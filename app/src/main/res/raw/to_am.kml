@@ -1,0 +1,2966 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>project 1.kmz</name>
+	<Style id="inline8">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>8</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="inline1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline100</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline30</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="inline70">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>6</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline30">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>0</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="inline80">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline70</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="inline14">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>8</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline13">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>8</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline100">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>0</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="inline6">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>6</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="inline12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline14</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="inline11">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#inline8</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#inline13</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="inline">
+		<LineStyle>
+			<color>ff00ff55</color>
+			<width>8</width>
+		</LineStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>project 1</name>
+		<open>1</open>
+		<Placemark>
+			<name>Path Measure</name>
+			<styleUrl>#inline12</styleUrl>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					44.299169656018,33.29720115710406,0 44.29531289554961,33.30737316106914,0 
+				</coordinates>
+			</LineString>
+		</Placemark>
+		<Placemark>
+			<name>Path Measure</name>
+			<styleUrl>#inline11</styleUrl>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					44.35115724669569,33.30456924488987,0 44.3528916061541,33.31676651300889,0 44.35525541602422,33.31642812954292,0 44.35292677009892,33.32447366920581,0 44.353318243117,33.32544064975971,0 44.3532925525546,33.32604907343639,0 44.35311158606535,33.32726991290877,0 44.35282662053461,33.3292875365603,0 44.35208857567761,33.33103828890144,0 44.35227091899627,33.33265186916012,0 
+				</coordinates>
+			</LineString>
+		</Placemark>
+		<Placemark>
+			<name>Path Measure</name>
+			<styleUrl>#inline1</styleUrl>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					44.33065257468128,33.24306316874034,0 44.33580813350965,33.24991083175931,0 
+				</coordinates>
+			</LineString>
+		</Placemark>
+		<Placemark>
+			<name>Path Measure</name>
+			<styleUrl>#inline80</styleUrl>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					44.33052601718078,33.24329459570902,0 44.33735980624211,33.25248570599805,0 
+				</coordinates>
+			</LineString>
+		</Placemark>
+		<Document>
+			<name>ASIA BGD METRO FINAL.kmz</name>
+			<open>1</open>
+			<StyleMap id="inline61">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline89</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline160</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="s_ylw-pushpin00">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<StyleMap id="msn_phone">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_phone3</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_phone</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline400">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline79">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_phone3">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<StyleMap id="inline121">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline140</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline150</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline101">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline47">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline1300">
+				<LineStyle>
+					<color>ff0000ff</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline840">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline20">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline56</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline19</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline190">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline310">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline71</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline75</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline490">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline1101">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline010</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline110</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline25">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline19">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline2300">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline28">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="m_ylw-pushpin">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#s_ylw-pushpin00</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="m_ylw-pushpin0">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#s_ylw-pushpin</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#s_ylw-pushpin_hl00</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline321">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline34">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline63">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline82">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline290</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline270</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline83">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline99">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline18">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline31">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline46">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="msn_B1">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_B2</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_B0</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="msn_B3">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_B1</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_B1</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline90">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline67</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline78</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline1010">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline92">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline410</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline2300</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline610">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline141">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline1000">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline49</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline1400</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline93">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline000">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline17</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline321</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="msn_T0">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_T</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_T0</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline71">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline00">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline1300</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline32</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline75">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline49">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline59">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline21</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline23</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline88">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline1400">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline111">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline87">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline73</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline900</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline60">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline53">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline910</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline101</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline17">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline77">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline120</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline311</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline54">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline400</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline35</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline45">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline36">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline45</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline39</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="msn_T">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_T0</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_T</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline55">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline60</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline610</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sn_T">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline33">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline141</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline111</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline86">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline35">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline900">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline39">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline530">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline470</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline81</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline72">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline29">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline47</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline46</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sn_phone0">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="inline74">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="msn_B0">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_B</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_B</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline290">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline94">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline74</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline58</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline122">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline150">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>8.2</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="s_ylw-pushpin_hl00">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="msn_phone3">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_phone</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_phone3</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="s_ylw-pushpin">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="sh_B1">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="sh_B2">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline15">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline401</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline24</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline42">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline85</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline79</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="msn_phone2">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_phone1</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_phone1</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline01">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline110">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="s_ylw-pushpin_hl0">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="inline330">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sn_T0">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="msn_M">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_M</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_M</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline230">
+				<LineStyle>
+					<color>ff00ffaa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline84">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline52">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline13000">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline590">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline99</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline1100</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline390">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline200">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sn_phone3">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="inline85">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline50">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline180</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline65</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline69">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline88</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline86</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline64">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline450</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline97</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline160">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline1210">
+				<LineStyle>
+					<color>ff00ffaa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline140">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>8.2</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline81">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_phone0">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="inline240">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline16">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline122</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline300</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline97">
+				<LineStyle>
+					<color>ff0000ff</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline300">
+				<LineStyle>
+					<color>ff00ff55</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline800">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline57</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline52</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sn_B2">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="msn_phone0">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_phone0</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_phone0</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline910">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_phone2">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="sn_phone1">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<StyleMap id="inline210">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline500</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline48</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline24">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_B0">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline401">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_M">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline91">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_T">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="sn_B">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline700">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline63</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline83</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline22">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline13000</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline72</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sn_B3">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline27">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline18</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline28</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline89">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline73">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_B">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline66">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline840</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline330</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sn_M">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline470">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="msn_phone1">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_phone2</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_phone2</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="m_ylw-pushpin1">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#s_ylw-pushpin0</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline500">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline58">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline411">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="msn_B">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_B0</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_B3</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline37">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline38">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline93</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline1010</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline010">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline67">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="s_ylw-pushpin0">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline130">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline31</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline34</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline43">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline240</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline390</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline680">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline490</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline190</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline48">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline78">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline26">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline25</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline280</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="sh_phone">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="sn_B0">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline98">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline76</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline91</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline180">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="s_ylw-pushpin_hl">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/M-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline51">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_B3">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline1301">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline11010">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sn_phone">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="sh_T0">
+				<IconStyle>
+					<scale>1.3</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/T-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<Style id="inline65">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sh_phone1">
+				<IconStyle>
+					<scale>1.4</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<StyleMap id="msn_B2">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#sn_B3</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#sh_B2</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline57">
+				<LineStyle>
+					<color>ffff0000</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline76">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline450">
+				<LineStyle>
+					<color>ff0000ff</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline270">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="sn_phone2">
+				<IconStyle>
+					<scale>1.2</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/shapes/phone.png</href>
+					</Icon>
+					<hotSpot x="0.5" y="0" xunits="fraction" yunits="fraction"/>
+				</IconStyle>
+			</Style>
+			<Style id="sn_B1">
+				<IconStyle>
+					<scale>1.1</scale>
+					<Icon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B.png</href>
+					</Icon>
+					<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+				</IconStyle>
+				<ListStyle>
+					<ItemIcon>
+						<href>http://maps.google.com/mapfiles/kml/paddle/B-lv.png</href>
+					</ItemIcon>
+				</ListStyle>
+			</Style>
+			<StyleMap id="inline62">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline37</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline411</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline32">
+				<LineStyle>
+					<color>ff0000ff</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline280">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline120">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline311">
+				<LineStyle>
+					<color>ff00ff00</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline410">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline23">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline1100">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>5</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<Style id="inline56">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>7</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline370">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline51</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline200</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Style id="inline21">
+				<LineStyle>
+					<color>ffff55aa</color>
+					<width>6</width>
+				</LineStyle>
+				<PolyStyle>
+					<fill>0</fill>
+				</PolyStyle>
+			</Style>
+			<StyleMap id="inline68">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline1210</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline230</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline1410">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline1301</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline01</styleUrl>
+				</Pair>
+			</StyleMap>
+			<StyleMap id="inline44">
+				<Pair>
+					<key>normal</key>
+					<styleUrl>#inline84</styleUrl>
+				</Pair>
+				<Pair>
+					<key>highlight</key>
+					<styleUrl>#inline11010</styleUrl>
+				</Pair>
+			</StyleMap>
+			<Placemark>
+				<name>Path Measure</name>
+				<styleUrl>#inline1410</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						44.35363478502239,33.30313672943539,0 44.35593613489511,33.30168559735981,0 44.35980044628204,33.2948729482402,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Path Measure</name>
+				<styleUrl>#inline68</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						44.35992142826215,33.29490653442167,0 44.36189934472676,33.29561566180561,0 44.36593237262858,33.29638902147274,0 44.3689191163386,33.29719492463543,0 44.37634481054986,33.2985088539423,0 44.38803928544589,33.30058833256065,0 44.39858164953795,33.30216988198247,0 44.39898814710883,33.30220419023859,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Path Measure</name>
+				<styleUrl>#inline53</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						44.39901390251754,33.30216916829451,0 44.40025826723966,33.2939062792221,0 44.40045776835275,33.29279344426616,0 44.40146358858937,33.29070429361951,0 44.40242822111546,33.28857738947259,0 44.40323362595097,33.28735831161005,0 44.40412042501124,33.28712531936027,0 44.40750961937121,33.28826884639559,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Path Measure</name>
+				<description>between Daoudi.EX - Hy khadhra</description>
+				<styleUrl>#inline1101</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						44.30541767619294,33.31153159456977,0 44.30505280183427,33.31106116945527,0 44.30250231264902,33.31094204019143,0 44.30114349925198,33.32082478478464,0 44.30055851785114,33.32436376085289,0 44.30052759478191,33.32477521756422,0 44.29530663145558,33.32415136676948,0 44.29534730108477,33.32351384203859,0 44.29509746528326,33.3236015287095,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Placemark>
+				<name>Path Measure</name>
+				<styleUrl>#inline121</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+						44.29935491004515,33.26195629261046,0 44.2984682288339,33.26257614938667,0 44.29754229848205,33.26878798721699,0 44.29731154851518,33.27024959466397,0 44.29642205800611,33.27576572666575,0 
+					</coordinates>
+				</LineString>
+			</Placemark>
+			<Folder>
+				<name>ASIA BGD METRO</name>
+				<open>1</open>
+				<LookAt>
+					<longitude>44.32158127767716</longitude>
+					<latitude>33.30679455364891</latitude>
+					<altitude>0</altitude>
+					<heading>0.01391132510992862</heading>
+					<tilt>31.32648350117282</tilt>
+					<range>6652.908808318593</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BR34-BR12</description>
+					<styleUrl>#inline90</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28265766787875,33.27721319618419,0 44.28281058002154,33.27709501025964,0 44.28404795024868,33.27764312491561,0 44.28445078643661,33.27703953979533,0 44.28470825758458,33.27650589241432,0 44.28478412373469,33.27587427939896,0 44.28511165338403,33.27405062582884,0 44.28539190137794,33.27232782692358,0 44.28563416714305,33.27115120019695,0 44.28399776388877,33.2709304167208,0 44.28386266573814,33.27079306091908,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>BR34-3G</name>
+					<LookAt>
+						<longitude>44.28155995384447</longitude>
+						<latitude>33.27835385744097</latitude>
+						<altitude>0</altitude>
+						<heading>-0.01229402617487242</heading>
+						<tilt>0</tilt>
+						<range>806.1908838402666</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.28259412309957,33.27723458669367,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>MSC2</name>
+					<LookAt>
+						<longitude>44.39297253187618</longitude>
+						<latitude>33.36495392578264</latitude>
+						<altitude>0</altitude>
+						<heading>0.06599031770242837</heading>
+						<tilt>0</tilt>
+						<range>1069.481013060554</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#m_ylw-pushpin0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.39325829428578,33.36525155256594,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between MSC1-BR34</description>
+					<styleUrl>#inline530</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28189816262626,33.28203883166433,0 44.28166150215814,33.2801939703422,0 44.28223941599113,33.28045041108577,0 44.28317910545933,33.2790533867443,0 44.28377642026702,33.27807490457661,0 44.28300809269951,33.27767287693499,0 44.28274208889011,33.27755934269894,0 44.28259922430357,33.27721070921221,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>MSC1</name>
+					<LookAt>
+						<longitude>44.24354484495743</longitude>
+						<latitude>33.28552646044419</latitude>
+						<altitude>0</altitude>
+						<heading>-0.01607324734918062</heading>
+						<tilt>0</tilt>
+						<range>1072.991609704394</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#m_ylw-pushpin0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.24239197341768,33.2859124314742,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between MSC1-MSC2</description>
+					<styleUrl>#inline64</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.24242065198002,33.28589648089772,0 44.23872352971488,33.28397900836435,0 44.24097748310142,33.28094261397378,0 44.24262561061379,33.27846774470655,0 44.24352194731822,33.27685380214373,0 44.24456947823617,33.27475560085809,0 44.24615802777461,33.27217233431598,0 44.24722400275353,33.27077244956063,0 44.24788116817587,33.2699773022498,0 44.24921392483654,33.26891852217266,0 44.25026236671948,33.2685127789118,0 44.25162532152957,33.2683054863039,0 44.25263459648869,33.26846510738243,0 44.25461210210597,33.26913464398496,0 44.26157746512003,33.27248735349716,0 44.26692151074987,33.27500848701343,0 44.2716354985089,33.27712207586054,0 44.27575774009915,33.27896824395502,0 44.28052729673645,33.28137557873585,0 44.28958236071767,33.28563369921049,0 44.29588605916842,33.28802809259008,0 44.30312805140483,33.28983224118435,0 44.3081232913496,33.29052401355879,0 44.313843634821,33.29085633576663,0 44.31952888530343,33.29068906751679,0 44.32619038559673,33.29001989910665,0 44.33095701245825,33.28900271958486,0 44.3372443678326,33.28702221152258,0 44.34062010152266,33.28589741941904,0 44.34324587502943,33.28572914337993,0 44.34476772237309,33.28602243038136,0 44.34611510311473,33.28641869561248,0 44.34686549460288,33.28723600298412,0 44.34847733009222,33.29003898339454,0 44.35131468564139,33.2946301660953,0 44.35226043874596,33.29639730406249,0 44.35350846103204,33.29826173971004,0 44.35452996298302,33.29967299431402,0 44.35556392341152,33.30107339416215,0 44.35602720410984,33.30192860958344,0 44.35573860720103,33.30219834840174,0 44.35466694399236,33.30265096239677,0 44.35358710964474,33.30281172897594,0 44.35358959919294,33.30320957625898,0 44.35337792723441,33.30286717909107,0 44.34939189375834,33.30342431728915,0 44.3470629828903,33.30368927360269,0 44.3419353887038,33.30439758174404,0 44.34124335685263,33.30486577419305,0 44.34027316401046,33.3077191001474,0 44.33944157686804,33.31012527922135,0 44.33840766359684,33.3134503793008,0 44.33799270212808,33.31503530725804,0 44.3380478931805,33.31642538317123,0 44.33817499777173,33.3183581093721,0 44.3383711027349,33.32349341351497,0 44.33876269605035,33.33156522225625,0 44.33929239298911,33.34241499006937,0 44.33941602243331,33.34414724028605,0 44.33987126862539,33.34568942422229,0 44.3405729640022,33.34703404094286,0 44.34161294708247,33.34811969438854,0 44.3455356357202,33.35105133489124,0 44.3425188870412,33.35362413484596,0 44.34071802450347,33.35511486218218,0 44.33679253097215,33.35851797532609,0 44.33549515450002,33.35978529436802,0 44.33490917698499,33.3612364861035,0 44.33510266467302,33.36217879335781,0 44.33726652701048,33.36155144121626,0 44.33880215293301,33.36109118173332,0 44.34207392656445,33.36359012640027,0 44.34367523020856,33.36480075340515,0 44.34497206223716,33.36569320430505,0 44.34519306471912,33.36623270771784,0 44.34554405191489,33.36628016036782,0 44.34602209510468,33.3662187501689,0 44.34701221155861,33.36766387665783,0 44.34808219327777,33.36954345277728,0 44.34890897024182,33.37080353606618,0 44.35154280496102,33.37340699802904,0 44.35367009283432,33.37551486011558,0 44.35391894437424,33.37580883670706,0 44.3570548046514,33.37372951994897,0 44.35984746291886,33.37202563164973,0 44.360276528225,33.3716698232948,0 44.36160095939685,33.37091484605088,0 44.36299658063064,33.37020916089784,0 44.36405206596123,33.36964033249738,0 44.36500949756327,33.36944095256851,0 44.36690283151929,33.3688190288061,0 44.36809286455161,33.36853646816154,0 44.36828255047851,33.36882157558868,0 44.36846658557399,33.3684343496758,0 44.3695590136645,33.36809966664899,0 44.37352899568838,33.36957956745095,0 44.37793884011391,33.37132165672039,0 44.38209851552045,33.37273302099477,0 44.38446820180887,33.37328703262522,0 44.38667619141158,33.36986812550074,0 44.38773404656695,33.368508191895,0 44.38853614591975,33.36746031411326,0 44.38991484019156,33.3655569006662,0 44.39027356103724,33.36499240464573,0 44.39308430092638,33.3655936610556,0 44.39327726724427,33.36525949115944,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>MAMOON.EX</name>
+					<LookAt>
+						<longitude>44.35617000251832</longitude>
+						<latitude>33.30315235492799</latitude>
+						<altitude>0</altitude>
+						<heading>0.0318131679313594</heading>
+						<tilt>0</tilt>
+						<range>2924.997101898794</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone2</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.35356974818479,33.30320732756651,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>ADHMYAA.EX</name>
+					<LookAt>
+						<longitude>44.3542661485804</longitude>
+						<latitude>33.36831486919228</latitude>
+						<altitude>0</altitude>
+						<heading>0.03075937128952993</heading>
+						<tilt>0</tilt>
+						<range>2925.524187670949</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone2</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.36827050972821,33.36890560690809,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>T-JOIN(1)</name>
+					<LookAt>
+						<longitude>44.28196747561345</longitude>
+						<latitude>33.28221936164817</latitude>
+						<altitude>0</altitude>
+						<heading>-0.01207041894442409</heading>
+						<tilt>0</tilt>
+						<range>799.6663218278704</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_T0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.28189649181185,33.28203230096075,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>betweeen BR12-JIHAD.EX</description>
+					<styleUrl>#inline92</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28390009878901,33.27077424896001,0 44.28401106347241,33.27072802836618,0 44.28409929831997,33.27010860041486,0 44.28578077540864,33.27028365947628,0 44.28667082721813,33.27085332440935,0 44.28756678907632,33.27128354961545,0 44.28706410805182,33.27194087720778,0 44.28698152262929,33.27190418612056,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between JIHAD-BSC5</description>
+					<styleUrl>#inline26</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.29922110764485,33.26165254826946,0 44.29874378298336,33.26120890271398,0 44.29791930174005,33.26060034219852,0 44.29659494630233,33.26007633965041,0 44.29473907227101,33.25945252321203,0 44.29239605242373,33.25865618166856,0 44.29080206641653,33.25818345554085,0 44.2905409063634,33.2581315027006,0 44.29229225215689,33.25568926174687,0 44.29278587875177,33.25535070223805,0 44.29336789410569,33.25520737278369,0 44.29360195086456,33.25496968627864,0 44.29441081674143,33.25409882769385,0 44.29504109182872,33.25358117387965,0 44.29511958687041,33.25334867631886,0 44.29534090339415,33.25306253733342,0 44.29560715582704,33.25265967335346,0 44.29473269667858,33.25250656945592,0 44.29421154844336,33.25193702528516,0 44.29581752828263,33.25136220464231,0 44.29597287432706,33.25144059610554,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between JIHAD.EX-BSC5</description>
+					<styleUrl>#inline700</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28692624643009,33.27195975814679,0 44.28713133911072,33.27204732532024,0 44.2875961861914,33.27143681376491,0 44.29654504334646,33.27597340789593,0 44.29703912026852,33.27273514593616,0 44.29750826242986,33.26937764349909,0 44.29800380110583,33.26607639216918,0 44.29855607208306,33.26272785192974,0 44.29875160115239,33.26220406259228,0 44.29922109502255,33.26164792059208,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BSC5-AL BAYAA</description>
+					<styleUrl>#inline1000</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.30879185519164,33.24289597571658,0 44.30862003781618,33.24283083377024,0 44.30568253475032,33.24563152181629,0 44.31161492288837,33.24772062035196,0 44.31207809802417,33.2479262384022,0 44.31146755021123,33.24924860918124,0 44.30962459157941,33.25091560621711,0 44.30768438026485,33.25260713561985,0 44.30597754833109,33.25418134488965,0 44.30448018225735,33.25549853792693,0 44.30304839677864,33.2567683386065,0 44.30178855124854,33.25650382770368,0 44.2963971008153,33.25552742236582,0 44.2965085730749,33.25498502457796,0 44.29633163019383,33.25495733331269,0 44.29660337474705,33.25410071597512,0 44.29607728171881,33.25398490623638,0 44.29642456761739,33.25274227997915,0 44.29589966019788,33.25210498171139,0 44.29622657087671,33.25163167240077,0 44.29598328158683,33.25145635268085,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Al Bayaa-intesar.ex</description>
+					<styleUrl>#inline94</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.32514773518101,33.23591843231968,0 44.32326313387135,33.23343009362093,0 44.32264702847677,33.233032892009,0 44.319943778958,33.23589890868564,0 44.31631028652177,33.23981647719054,0 44.31375680839167,33.24251561380789,0 44.31162889532504,33.24468140257525,0 44.30889409173091,33.24269783804478,0 44.30878510733861,33.24265640980972,0 44.30871554049661,33.24279727486963,0 44.30883425273987,33.24297130305524,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Al Bayaa -Intesat.EX</description>
+					<styleUrl>#inline310</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.3251661593445,33.23592870007738,0 44.32724874392215,33.23862349260076,0 44.33000442082386,33.24239139913206,0 44.3304993471177,33.24295421513786,0 44.33129892577459,33.24258126612015,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>BSC8</name>
+					<LookAt>
+						<longitude>44.33863081690989</longitude>
+						<latitude>33.25255012980356</latitude>
+						<altitude>0</altitude>
+						<heading>0.01791660412731057</heading>
+						<tilt>0</tilt>
+						<range>1118.1013888739</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B2</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.33850162826674,33.25249615397959,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Intesar.EX -BSC8</description>
+					<styleUrl>#inline98</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.3313087925216,33.24264691431566,0 44.33062581695087,33.24308498944578,0 44.33294662570021,33.24613156703439,0 44.33550220676615,33.24959455835973,0 44.3365716103466,33.2511575470658,0 44.33709747397582,33.25193028829143,0 44.33751777303063,33.25244653663166,0 44.33836237276114,33.25235486231475,0 44.33852148357906,33.2524712156441,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Jihad.ex</name>
+					<LookAt>
+						<longitude>44.28544825086961</longitude>
+						<latitude>33.27068895501282</latitude>
+						<altitude>0</altitude>
+						<heading>-0.009753117773073916</heading>
+						<tilt>0</tilt>
+						<range>622.9666834957395</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.28693735255627,33.27191353732196,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BSC8-BR13</description>
+					<styleUrl>#inline000</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.33850100662854,33.25254166731781,0 44.33839885095544,33.25259819199743,0 44.33768084413163,33.25275797712738,0 44.3398007402466,33.25585195657332,0 44.34185269002369,33.2586621780782,0 44.34168230811201,33.25890568209114,0 44.34330384550957,33.26104201121016,0 44.3441174342582,33.26237020227684,0 44.34196751703944,33.26331168227933,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>BR13</name>
+					<LookAt>
+						<longitude>44.34511276435564</longitude>
+						<latitude>33.27553024659831</latitude>
+						<altitude>0</altitude>
+						<heading>0.01896406859573971</heading>
+						<tilt>11.33471687669946</tilt>
+						<range>791.4116217935525</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B1</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.34509869841081,33.27552126258834,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>Intesar.EX</name>
+					<LookAt>
+						<longitude>44.33258387353027</longitude>
+						<latitude>33.24330375642704</latitude>
+						<altitude>0</altitude>
+						<heading>0.01460124808125141</heading>
+						<tilt>0</tilt>
+						<range>1113.233345679619</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.33132870711224,33.24259740936471,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>Al Bayaa</name>
+					<LookAt>
+						<longitude>44.31026396988519</longitude>
+						<latitude>33.24342522283308</latitude>
+						<altitude>0</altitude>
+						<heading>0.003857186088084081</heading>
+						<tilt>0</tilt>
+						<range>623.9985684483418</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.30879632123362,33.2428949494921,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>BSC5</name>
+					<LookAt>
+						<longitude>44.29597687901586</longitude>
+						<latitude>33.25281879156626</latitude>
+						<altitude>0</altitude>
+						<heading>-0.003976724960570207</heading>
+						<tilt>0</tilt>
+						<range>624.2509479596795</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.29598253492478,33.25145382406969,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>Hy Atebaa BR12</name>
+					<LookAt>
+						<longitude>44.283598689533</longitude>
+						<latitude>33.27203784815107</latitude>
+						<altitude>0</altitude>
+						<heading>-0.0111752300189716</heading>
+						<tilt>0</tilt>
+						<range>804.3872146739019</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B0</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.28384976105874,33.27077687637357,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Doura.EX-MSC3</description>
+					<styleUrl>#inline42</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.41692951688046,33.26126689730743,0 44.41559711890263,33.26395786764074,0 44.41463750531457,33.26556608235208,0 44.41347079213944,33.26770862730825,0 44.41255659028059,33.26938162050821,0 44.41127728494624,33.27154766327311,0 44.41020330015632,33.27339130552729,0 44.40889938919712,33.27576145960969,0 44.40765869171612,33.27782419747663,0 44.40651296198382,33.27983433237395,0 44.40543883268355,33.2819977331516,0 44.40486447464454,33.28365201072153,0 44.40396996571199,33.28644193102019,0 44.40420639408356,33.2868991860238,0 44.40496830542398,33.28727068321079,0 44.40660120118266,33.28795918855057,0 44.40751063794554,33.28832463048501,0 44.40875688380697,33.28880668065149,0 44.41326547946292,33.29072171601428,0 44.42506584079427,33.29532488675871,0 44.43542507566102,33.29952568318566,0 44.43882419291076,33.30083722220997,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Doura.EX-MSC3</description>
+					<styleUrl>#inline77</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.43885247631641,33.30082603647358,0 44.43903324748685,33.30069230731827,0 44.4394397307224,33.3006143471975,0 44.43964234377457,33.3005754875709,0 44.44022289643834,33.29865767796552,0 44.44048835702505,33.29795335283139,0 44.44065220155297,33.29728647786451,0 44.44157043339052,33.2975464854982,0 44.44144135756415,33.29774803421244,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Doura.ex</name>
+					<LookAt>
+						<longitude>44.3926681891034</longitude>
+						<latitude>33.25632301947846</latitude>
+						<altitude>0</altitude>
+						<heading>0.04504730814805854</heading>
+						<tilt>11.33471691350568</tilt>
+						<range>791.4332945940394</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.39308518225901,33.25593400426777,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>MSC3</name>
+					<LookAt>
+						<longitude>44.44199003485485</longitude>
+						<latitude>33.29803659835234</latitude>
+						<altitude>0</altitude>
+						<heading>0.07211212753864553</heading>
+						<tilt>11.33471107308873</tilt>
+						<range>788.1252336259903</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_M</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.44145391097702,33.29773942246882,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Doura.ex-MSC3</description>
+					<styleUrl>#inline590</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.39322637470974,33.25571910135421,0 44.39582936091694,33.25632336909867,0 44.40298083421511,33.25798121927286,0 44.40801888432257,33.25915811367177,0 44.4129672311751,33.26029328783532,0 44.41694497992334,33.26125783456246,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between MSC1-DAOUDI.EX</description>
+					<styleUrl>#inline680</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.29449409171092,33.28752265691646,0 44.29337287853731,33.29063676638437,0 44.29088358044628,33.29674676998935,0 44.28714690898284,33.30647335658105,0 44.29067944349178,33.30697065423129,0 44.29573604393566,33.30850850263789,0 44.30392277619253,33.31073861997109,0 44.30514620719971,33.31101719668386,0 44.30537062427036,33.31151698758713,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Hy khadhra-Ghazalya</description>
+					<styleUrl>#inline61</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.29510269579568,33.32357903967775,0 44.2949931854133,33.3234590414642,0 44.29348102768305,33.32328640109527,0 44.29327769349536,33.32396484960808,0 44.29281561419288,33.32395329072376,0 44.29273328921789,33.3246559696157,0 44.29318760634057,33.32471035301122,0 44.29280241883514,33.32689560742713,0 44.29277576123743,33.32740514653882,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Hy khadhra</name>
+					<LookAt>
+						<longitude>44.29841487714176</longitude>
+						<latitude>33.32356985196249</latitude>
+						<altitude>0</altitude>
+						<heading>0.06139712125352507</heading>
+						<tilt>11.29490049350441</tilt>
+						<range>1443.116194918548</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.29509039788196,33.32356810905712,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Hy khadhra- Ghazalya</description>
+					<styleUrl>#inline50</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.29274365523747,33.32742256988796,0 44.29144270210109,33.32740254454088,0 44.29186798748054,33.33092795754197,0 44.28692127923712,33.33033957843917,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Hy khadhra - Ghazalya</description>
+					<styleUrl>#inline54</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28691106057272,33.33034410810945,0 44.2841487038485,33.33685806007411,0 44.28229148270934,33.3413540591507,0 44.28078915134467,33.34499846055309,0 44.28186452643695,33.34509147714452,0 44.28497551474707,33.34534419629404,0 44.28518559242678,33.344785698484,0 44.28556139236549,33.34451447973586,0 44.28567764432601,33.34448001580216,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Daoudi.EX</name>
+					<LookAt>
+						<longitude>44.30385771065172</longitude>
+						<latitude>33.30922623341583</latitude>
+						<altitude>0</altitude>
+						<heading>0.06438690851540571</heading>
+						<tilt>8.155752740901681</tilt>
+						<range>2012.572207042612</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_phone1</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.30533398670492,33.3115012044171,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>Ghazalya</name>
+					<LookAt>
+						<longitude>44.28523669718619</longitude>
+						<latitude>33.34391301457401</latitude>
+						<altitude>0</altitude>
+						<heading>0.05415695171003805</heading>
+						<tilt>11.29490210226675</tilt>
+						<range>1444.033904482835</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.2856643303321,33.34443535078862,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Ghazalya-BR23</description>
+					<styleUrl>#inline370</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.28571666305459,33.34450213657021,0 44.28586185817562,33.34474857189363,0 44.28578526291462,33.34488466256639,0 44.28550024881117,33.34520424169177,0 44.2853828726879,33.34536518398228,0 44.29580688890084,33.34631191698617,0 44.3009737826556,33.34685084839173,0 44.30077878410957,33.34868436681115,0 44.30007799884899,33.35419719960669,0 44.29945915565318,33.35910526943468,0 44.29870138391237,33.36511151206936,0 44.29864611388008,33.36545964774496,0 44.29710004261816,33.36541875959335,0 44.29715224340431,33.36568706787133,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BR23-BR30</description>
+					<styleUrl>#inline66</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.29716599592186,33.36570780085226,0 44.29890024883288,33.36585317931619,0 44.30036252249877,33.35538868375103,0 44.30073008519511,33.35221208282569,0 44.30147707812198,33.34582028789936,0 44.3015768999915,33.34425740135045,0 44.3035607411524,33.3442760031179,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>BR30</name>
+					<LookAt>
+						<longitude>44.30027369047375</longitude>
+						<latitude>33.3427333687721</latitude>
+						<altitude>0</altitude>
+						<heading>0.06242288968426242</heading>
+						<tilt>11.29490588056098</tilt>
+						<range>1446.178825460275</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.30357261519803,33.34425294151461,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>T-JOIN(2)</name>
+					<LookAt>
+						<longitude>44.29312733250612</longitude>
+						<latitude>33.28738403706983</latitude>
+						<altitude>0</altitude>
+						<heading>0.05849370617288859</heading>
+						<tilt>8.155750829618711</tilt>
+						<range>2011.069426087084</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_T</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.29446892589414,33.28755436802823,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BR30-Alaskan</description>
+					<styleUrl>#inline87</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.30070729077644,33.33162321077364,0 44.31193277924633,33.33283059946479,0 44.32476948324977,33.33413281778429,0 44.32487458418546,33.33551659740859,0 44.32597095211752,33.33767317986989,0 44.32612736238564,33.33788557210379,0 44.32664005636395,33.33787407150523,0 44.32679314971946,33.33805915754839,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Askan-Bejia</description>
+					<styleUrl>#inline82</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.32680560838508,33.33803829027752,0 44.32690780565787,33.33776079796679,0 44.32795582943227,33.33776367788291,0 44.32818347136647,33.33738323646719,0 44.32823045199474,33.33391774955744,0 44.32943800155063,33.33392782978989,0 44.32984819819658,33.33380941136496,0 44.32996438829864,33.33363950642691,0 44.33874815790729,33.33331040569598,0 44.33916140769096,33.33328880621104,0 44.33903747911202,33.33159691244155,0 44.34276239455478,33.33201856938293,0 44.34312364065103,33.33130084904119,0 44.34377764814539,33.33161047014919,0 44.34564987953613,33.33194392669894,0 44.34676654827339,33.33215191971899,0 44.34841931089294,33.33256865573915,0 44.34992681305128,33.33318935200914,0 44.35090183330481,33.33141939418425,0 44.3516435246722,33.3319926490489,0 44.35197781206714,33.33292938300112,0 44.35215490260837,33.33291768904994,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Bejia</name>
+					<LookAt>
+						<longitude>44.3522027152739</longitude>
+						<latitude>33.33365375584305</latitude>
+						<altitude>0</altitude>
+						<heading>0.09095824443763977</heading>
+						<tilt>11.2949006223781</tilt>
+						<range>1443.192742938956</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.35216324244608,33.33288983815707,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>Alaskan</name>
+					<LookAt>
+						<longitude>44.32554170881358</longitude>
+						<latitude>33.33616064687004</latitude>
+						<altitude>0</altitude>
+						<heading>0.0763080913139572</heading>
+						<tilt>11.29490129226552</tilt>
+						<range>1443.571700882606</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.32678268635944,33.33802134486674,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Bejia-sheekh maaroof</description>
+					<styleUrl>#inline38</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.3521866917316,33.33290484780343,0 44.35229230495937,33.3330610417972,0 44.35270753279185,33.33297001643467,0 44.35290534905641,33.3331731400377,0 44.35353737880443,33.33297599480716,0 44.35326637736171,33.3316676081545,0 44.35314777214204,33.3303231745538,0 44.35394379452527,33.32985953208284,0 44.3554753165348,33.32915044552377,0 44.35714158987429,33.32835719386426,0 44.35830818063334,33.32779858818652,0 44.35894693642416,33.32755903706722,0 44.36004328690003,33.32680565811073,0 44.36075536177273,33.32639876822569,0 44.36199817970545,33.32554145021202,0 44.36250819847056,33.32511852072278,0 44.36325645171077,33.32468134913496,0 44.36391810376388,33.32405421111555,0 44.36429796214065,33.32344692560852,0 44.36470825043197,33.32270001805531,0 44.36513556003971,33.32190615763631,0 44.36558719754255,33.32090773687842,0 44.365884377218,33.32061764580378,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Bejia-Sheekh maaroof</description>
+					<styleUrl>#inline22</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.37844705779449,33.3385430484993,0 44.37823888274311,33.33797695787791,0 44.37788290337451,33.33675957424475,0 44.3777034464818,33.33626669327174,0 44.3775405387001,33.33576646003822,0 44.37762463581851,33.33556635394589,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Sheekh Maaroof</name>
+					<LookAt>
+						<longitude>44.37801762980936</longitude>
+						<latitude>33.33603705001275</latitude>
+						<altitude>0</altitude>
+						<heading>0.1051883418013986</heading>
+						<tilt>11.29489551989726</tilt>
+						<range>362.7281114819779</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.37762469292115,33.33556375846307,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between BR30-Alaskan</description>
+					<styleUrl>#inline43</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.30361188543413,33.34425274008193,0 44.30384770471503,33.34426257405171,0 44.30389751616528,33.34371858405386,0 44.30313857608446,33.34361958962991,0 44.30301851130908,33.34268687094959,0 44.30240059499442,33.34265336676436,0 44.30177196596097,33.34260032702117,0 44.30123853358892,33.33625146819091,0 44.30067562820653,33.33163618229362,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Bejia-Sheekh maaroof</description>
+					<styleUrl>#inline69</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.36588242287952,33.32061736308392,0 44.36643449924938,33.32026335844172,0 44.36758376191914,33.31960153041271,0 44.36866102804176,33.3189509223604,0 44.36937831705942,33.31850720906679,0 44.37051970118679,33.31729065114757,0 44.37305028840775,33.31841703275134,0 44.3757569910584,33.31967596583635,0 44.37765886198694,33.32054021185151,0 44.37995330260652,33.32160180977651,0 44.38160700959755,33.32266419776475,0 44.38312904918723,33.32399100065896,0 44.38360321416939,33.3250255199659,0 44.3842187842471,33.32709295468931,0 44.38452323485448,33.32858563967573,0 44.38495000020028,33.32983022572396,0 44.38548484098583,33.33129449209406,0 44.38587699992024,33.3323055147139,0 44.38669373133599,33.33377979133259,0 44.38510011962934,33.33464537048047,0 44.38415401262628,33.3352035815503,0 44.38261963042785,33.33612572624353,0 44.38134245819163,33.33691008838785,0 44.380009197139,33.33767304353029,0 44.37844358626288,33.33854605277301,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Sheekh Maaroof-Mydan</description>
+					<styleUrl>#inline55</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.37760642461676,33.33556903061019,0 44.37715623603341,33.33570695322729,0 44.37818001402937,33.33933592405492,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Sheekh Maaroof-Maydan</description>
+					<styleUrl>#inline210</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.37818736106271,33.33933805058264,0 44.37973047448892,33.34432037350874,0 44.38051043740196,33.34571100341839,0 44.38143220886188,33.34652731663316,0 44.38169651424722,33.3463510608639,0 44.38363849798792,33.34731313732079,0 44.38474078478662,33.34854906534652,0 44.38570500348508,33.34790178384142,0 44.38559756836386,33.34781334411849,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Almaydan-MSC2</description>
+					<styleUrl>#inline44</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.38752644601784,33.35647777783127,0 44.38883905681699,33.35689676397299,0 44.38885601190383,33.35723279910024,0 44.38884736679886,33.35923616713407,0 44.38887809517316,33.35957977719665,0 44.38869986232638,33.36004276091131,0 44.38856181762846,33.36109192695847,0 44.38876868187904,33.36132411972025,0 44.38967230695652,33.36145520471036,0 44.3905862055604,33.3632135360041,0 44.39120655547331,33.36351918026354,0 44.39179260830282,33.36373246453129,0 44.39145175600803,33.36411250743121,0 44.39348793850384,33.36447220600691,0 44.39449255939338,33.36469782157202,0 44.39394516081763,33.36570975460053,0 44.39320313443334,33.36553761198218,0 44.39325853311112,33.36531818899679,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline33</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34329732471016,33.2627626768199,0 44.3463029377681,33.26732377543309,0 44.34747460226391,33.26682017677034,0 44.34860007107729,33.26887753864435,0 44.34989350736035,33.26820942729523,0 44.35264052027145,33.2722884954559,0 44.34724535798175,33.27473968472125,0 44.35014589059868,33.27924016718898,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline62</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.38845314798912,33.25444750329253,0 44.39291455068606,33.25539014359196,0 44.39302211196392,33.25577831420172,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline59</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34719092576084,33.27498210471461,0 44.34529322642732,33.27597765736759,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline29</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.35014531669034,33.27925225481774,0 44.36039124416789,33.26794903701399,0 44.36148284390787,33.26555654289863,0 44.36511604189229,33.25723453424817,0 44.36665382725322,33.25630449941048,0 44.37262009189728,33.25553051713515,0 44.37574458258761,33.25690421645655,0 44.37709272947583,33.25694898645745,0 44.37901418424802,33.25661778985053,0 44.38083746148239,33.25611370378721,0 44.38214839029812,33.25544805987614,0 44.38409774279837,33.25509207698897,0 44.38589138975358,33.25442747641625,0 44.386980971428,33.25433559352364,0 44.38847176862222,33.25451246136177,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline20</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34452856204865,33.276032994901,0 44.34357770732779,33.27677117091412,0 44.34697059972618,33.28179193787747,0 44.3464067319397,33.2871041337821,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline130</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.35531132265658,33.301485922539,0 44.34651831937215,33.2867882969519,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline15</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34618763486476,33.28716701600384,0 44.35508418997015,33.3018265579373,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline27</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.30550230599678,33.31126091971181,0 44.32299783233275,33.30730882966535,0 44.33437841754833,33.30609048036323,0 44.34817553159824,33.30468623726981,0 44.35355023218312,33.30449324514957,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline36</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34110670799792,33.30552153648556,0 44.34049701023861,33.30693719735785,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Path Measure</name>
+					<styleUrl>#inline16</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.34149151780937,33.30540146325387,0 44.34076154969922,33.3071395449905,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between jadrya.ex-MSC3</description>
+					<styleUrl>#inline00</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.40792423450556,33.28816685230403,0 44.4075526142345,33.28793652196856,0 44.40805492513238,33.2863788500061,0 44.4096590340495,33.2870168325218,0 44.40964747702994,33.28780099125331,0 44.41179599282443,33.28850257054349,0 44.41489185868856,33.28953066382493,0 44.41724775265277,33.29060658159568,0 44.41830580921735,33.29030228743599,0 44.41930491111567,33.29040867897516,0 44.41972021050035,33.28912176354032,0 44.42043225426725,33.28792017322529,0 44.42276784828805,33.28942378758977,0 44.42461839120679,33.29019872501402,0 44.4278529581734,33.29125627504909,0 44.43254069259849,33.29264350624214,0 44.43478903264547,33.29291750234778,0 44.43684233910697,33.29297980426479,0 44.43392782222407,33.29925998778383,0 44.43172956166471,33.30394737447155,0 44.43222525500514,33.30437047929064,0 44.4411276499296,33.30032452854355,0 44.44441752430401,33.29874559232745,0 44.44164879613447,33.29763318054274,0 44.44146936187119,33.29774262608701,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>Al Maydan</name>
+					<LookAt>
+						<longitude>44.38334229883274</longitude>
+						<latitude>33.34698157907517</latitude>
+						<altitude>0</altitude>
+						<heading>0.1084854265773271</heading>
+						<tilt>7.350135251604976</tilt>
+						<range>1018.406645545976</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.38557619135762,33.34778154543066,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>jadrya.ex</name>
+					<LookAt>
+						<longitude>44.39713265744712</longitude>
+						<latitude>33.28295720212756</latitude>
+						<altitude>0</altitude>
+						<heading>0.05029075145990556</heading>
+						<tilt>31.3265054155738</tilt>
+						<range>4342.270656337966</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#m_ylw-pushpin</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.40799230910528,33.28816949573381,0</coordinates>
+					</Point>
+				</Placemark>
+				<Placemark>
+					<name>قياس المسار</name>
+					<description>between Almaydan-MSC2</description>
+					<styleUrl>#inline800</styleUrl>
+					<LineString>
+						<tessellate>1</tessellate>
+						<coordinates>
+							44.38564139918378,33.34780515066088,0 44.38576199693986,33.34804948689452,0 44.38514920216795,33.34879123404192,0 44.38511467354841,33.34922818947522,0 44.38472155725673,33.34959982742643,0 44.3843109453356,33.35117248381164,0 44.38405922490468,33.35249285542198,0 44.38386147359203,33.35438974640336,0 44.38389975425759,33.35529303604949,0 44.38752147005567,33.35647652725476,0 
+						</coordinates>
+					</LineString>
+				</Placemark>
+				<Placemark>
+					<name>BR23</name>
+					<LookAt>
+						<longitude>44.29320204316296</longitude>
+						<latitude>33.36740863702254</latitude>
+						<altitude>0</altitude>
+						<heading>0.05853323495146712</heading>
+						<tilt>11.29489869550243</tilt>
+						<range>1442.095328929274</range>
+						<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+					</LookAt>
+					<styleUrl>#msn_B3</styleUrl>
+					<Point>
+						<gx:drawOrder>1</gx:drawOrder>
+						<coordinates>44.29715110533062,33.36566635715314,0</coordinates>
+					</Point>
+				</Placemark>
+			</Folder>
+			<Placemark>
+				<name>MSC1</name>
+				<LookAt>
+					<longitude>44.24729165840337</longitude>
+					<latitude>33.3002097969969</latitude>
+					<altitude>0</altitude>
+					<heading>0.001891876962485029</heading>
+					<tilt>44.78305166885158</tilt>
+					<range>6396.471465410576</range>
+					<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+				</LookAt>
+				<styleUrl>#m_ylw-pushpin1</styleUrl>
+				<Point>
+					<gx:drawOrder>1</gx:drawOrder>
+					<coordinates>44.2423430223681,33.28580672518758,0</coordinates>
+				</Point>
+			</Placemark>
+		</Document>
+	</Folder>
+</Document>
+</kml>

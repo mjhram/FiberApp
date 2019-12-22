@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FiberApp</string>
+    <string name="title_activity_maps">Fiber App</string>
+
+    <string name="sign_in_cancelled">Sign in cancelled</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="account_disabled">Account is disabled by the administrator</string>
+    <string name="unknown_error">An unknown error occurred</string>
+
+</resources>
