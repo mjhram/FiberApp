@@ -23,9 +23,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.kml.KmlLayer;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -97,10 +97,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng bgd = new LatLng(33.2967658, 44.4707338);
-        mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(bgd));
+        //mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
         //retrieveFileFromResource();
-        //getFileList();
+        getFileList();
 
 
     }
@@ -173,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private boolean processKmzResponse(ResponseBody body) {
+    private boolean processKmzResponse(ResponseBody body, final String filename) {
         KmlLayer kmlLayer = null;
         try {
             // todo change the file location/name according to your needs
@@ -191,7 +191,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 inputStream = body.byteStream();
                 zipInputStream = new ZipInputStream(new BufferedInputStream(inputStream));
-                //outputStream = new FileOutputStream(outFile);
+
+                //FileOutputStream outputStream = this.openFileOutput(filename, Context.MODE_PRIVATE);
+                    //outputStream = new FileOutputStream(outFile);
                 ZipEntry zipEntry;
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                     if (!zipEntry.isDirectory()) {
@@ -199,6 +201,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (fileName.endsWith(".kml")) {
                             kmlLayer = new KmlLayer(mMap, zipInputStream, MapsActivity.this);
                             kmlLayer.addLayerToMap();
+                            kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                                @Override
+                                public void onFeatureClick(Feature feature) {
+                                    String ss = feature.getProperty("description");//getId();
+                                    Toast.makeText(MapsActivity.this,
+                                            "Coming soon" ,
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             break;
                         }
                     }
@@ -206,18 +217,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
 
 /*
-                while (true) {
-                    int read = inputStream.read(fileReader);
-                    if (read == -1) {
-                        break;
-                    }
+                            while (true) {
+                                int read = inputStream.read(fileReader);
+                                if (read == -1) {
+                                    break;
+                                }
 
-                    outputStream.write(fileReader, 0, read);
+                                outputStream.write(fileReader, 0, read);
 
-                    fileSizeDownloaded += read;
+                                fileSizeDownloaded += read;
 
-                    Log.d(TAG, "file download: " + fileSizeDownloaded + " of " + fileSize);
-                }
+                                Log.d(TAG, "file download: " + fileSizeDownloaded + " of " + fileSize);
+                            }
 
                 outputStream.flush();*/
 
@@ -249,7 +260,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "server contacted and has file");
-                    boolean writtenToDisk = processKmzResponse(response.body());
+                    boolean writtenToDisk = processKmzResponse(response.body(), filename);
                     Log.d(TAG, "file download was a success? " + writtenToDisk);
                 } else {
                     Log.d(TAG, "server contact failed");
@@ -296,7 +307,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(getApplicationContext(),"Failure", Toast.LENGTH_SHORT).show();
             }
         });
-    }
+        }
 
 
 

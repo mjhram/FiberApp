@@ -29,22 +29,24 @@ public class Prefs {
     }
 
     public static FileList getFList(Context mContext) {
-        //may return null, if size =0
+        //if size =0, return
         //files.get(i) may equal ""
         //fdates.get(i) may equal 0
         SharedPreferences prefs = mContext.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         //SharedPreferences.Editor editor = prefs.edit();
-        int ss = prefs.getInt("size", 0);
-        if(ss == 0) return null;
         FileList fList = new FileList();
         ArrayList<String> files = new ArrayList<String>();
         ArrayList<Long> fdates = new ArrayList<Long>();
+        fList.setFiles(files);
+        fList.setFdates(fdates);
+        int ss = prefs.getInt("size", 0);
+        if(ss == 0) return fList;
+
         for (int i = 0; i < ss; i++) {
             files.add(prefs.getString("fn"+i,""));
             fdates.add(prefs.getLong("fd"+i,0));
         }
-        fList.setFiles(files);
-        fList.setFdates(fdates);
+
         return fList;
     }
 
