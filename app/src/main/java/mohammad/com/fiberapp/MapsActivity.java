@@ -25,7 +25,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.kml.KmlLayer;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -38,6 +37,7 @@ import java.util.zip.ZipInputStream;
 
 import mohammad.com.fiberapp.model.FileList;
 import mohammad.com.fiberapp.service.RetrofitInstance;
+import mohammad.com.fiberapp.utility.Decompress2;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -100,7 +100,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
         //retrieveFileFromResource();
-        getFileList();
+        //getFileList();
 
 
     }
@@ -197,7 +197,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ZipEntry zipEntry;
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                     if (!zipEntry.isDirectory()) {
-                        String fileName = zipEntry.getName();
+                        Decompress2.extractEntry("/storage/emulated/0/Download/", zipEntry, zipInputStream);
+
+                        /*String fileName = zipEntry.getName();
                         if (fileName.endsWith(".kml")) {
                             kmlLayer = new KmlLayer(mMap, zipInputStream, MapsActivity.this);
                             kmlLayer.addLayerToMap();
@@ -211,7 +213,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 }
                             });
                             break;
-                        }
+                        }*/
                     }
                     zipInputStream.closeEntry();
                 }
@@ -235,10 +237,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 return true;
             } catch (IOException e) {
                 return false;
-            } catch (XmlPullParserException e) {
+            } /*catch (XmlPullParserException e) {
                 e.printStackTrace();
                 return false;
-            } finally {
+            } */finally {
                 if (inputStream != null) {
                     inputStream.close();
                 }
@@ -327,10 +329,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public void onBtnClicked(View v) {
         getFileList();
-        /*try {
-            decompress();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        //new Decompress2("/storage/emulated/0/Download/to am.kmz", "/storage/emulated/0/Download/", this).execute();
+
     }
 }
