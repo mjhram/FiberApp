@@ -11,6 +11,8 @@ public class FileInfo {
     @Expose
     private String dt;
 
+    public int error;
+
     public String getFn() {
         return fn;
     }

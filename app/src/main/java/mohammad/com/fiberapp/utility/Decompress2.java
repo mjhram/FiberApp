@@ -86,7 +86,7 @@ public class Decompress2 extends AsyncTask<Void, Integer, Integer> {
             while (entries.hasMoreElements()) {
                 final ZipEntry entry = entries.nextElement();
                 System.out.printf("File: %s Size %d Modified on %TD %n", entry.getName(), entry.getSize(), new Date(entry.getTime()));
-                extractEntry(OUTPUT_DIR, entry, file.getInputStream(entry));
+                extractEntry(OUTPUT_DIR, entry, file.getInputStream(entry), null);
             } System.out.printf("Zip file %s extracted successfully in %s", FILE_NAME, OUTPUT_DIR);
         } finally {
             file.close();
@@ -101,7 +101,7 @@ public class Decompress2 extends AsyncTask<Void, Integer, Integer> {
             ZipEntry entry;
             while ((entry = is.getNextEntry()) != null) {
                 System.out.printf("File: %s Size %d Modified on %TD %n", entry.getName(), entry.getSize(), new Date(entry.getTime()));
-                extractEntry(OUTPUT_DIR, entry, is);
+                extractEntry(OUTPUT_DIR, entry, is, null);
             }
         }
         finally { is.close();
@@ -112,8 +112,8 @@ public class Decompress2 extends AsyncTask<Void, Integer, Integer> {
 
     private static final int BUFFER_SIZE = 8192;
     /* * Utility method to read data from InputStream */
-    public static void extractEntry(final String OUTPUT_DIR,final ZipEntry entry, InputStream is) throws IOException {
-        String exractedFile = OUTPUT_DIR + entry.getName();
+    public static void extractEntry(final String OUTPUT_DIR,final ZipEntry entry, InputStream is, String fname) throws IOException {
+        String exractedFile = OUTPUT_DIR + (fname==null?entry.getName():fname);
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(exractedFile);

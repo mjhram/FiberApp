@@ -1,6 +1,7 @@
 package mohammad.com.fiberapp.service;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
@@ -15,8 +16,8 @@ public class RetrofitInstance {
                     .Builder()
                     .baseUrl(BASE_URL)
                     //.addConverterFactory(ScalarsConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
-
                     .build();
         }
         return retrofit.create(GetKmzDataService.class);

@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -24,6 +26,11 @@ android {
 }
 
 dependencies {
+    def retrofitVersion = "2.7.0"
+    def rxjava_version = '2.2.16'
+    def rxandroid_version = '2.1.1'
+    def recyclerview_version = "1.0.0"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.android.support:design:29.0.2'
@@ -33,9 +40,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.maps.android:android-maps-utils:0.6.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.7.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
 
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
@@ -43,6 +50,18 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    // RxJava Call Adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation("com.squareup.okio:okio:2.4.3")
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+
 
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

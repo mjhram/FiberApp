@@ -32,16 +32,23 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+import mohammad.com.fiberapp.model.FileInfo;
 import mohammad.com.fiberapp.model.FileList;
 import mohammad.com.fiberapp.service.RetrofitInstance;
 import mohammad.com.fiberapp.utility.Decompress2;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.INTERNET;
@@ -54,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final int PERMISSION_REQUEST_CODE = 200;
     private GoogleMap mMap;
     private FileList localFList;
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     @NonNull
     public static Intent createIntent(@NonNull Context context, @Nullable IdpResponse response) {
@@ -196,8 +204,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //outputStream = new FileOutputStream(outFile);
                 ZipEntry zipEntry;
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                    if (!zipEntry.isDirectory()) {
-                        Decompress2.extractEntry("/storage/emulated/0/Download/", zipEntry, zipInputStream);
+                    if (!zipEntry.isDirectory() && zipEntry.getName().endsWith(".kml")) {
+                        // Remove the extension.
+                        int extensionIndex = filename.lastIndexOf(".");
+                        String fname;
+                        if (extensionIndex != -1)
+                            fname = filename;
+                        fname = filename.substring(0, extensionIndex);
+                        fname += ".kml";
+                        Decompress2.extractEntry("/storage/emulated/0/Download/", zipEntry, zipInputStream, fname);
 
                         /*String fileName = zipEntry.getName();
                         if (fileName.endsWith(".kml")) {
@@ -254,7 +269,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     final String TAG = "FiberApp";
-    void downloadAFile(String filename, long filedate) {
+  /*  void downloadAFile(String filename, long filedate) {
         Call<ResponseBody> call2 = RetrofitInstance.getService().downloadFile(filename);
 
         call2.enqueue(new Callback<ResponseBody>() {
@@ -275,8 +290,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+*/
+    private Observable<FileInfo> getPostsObservable(){
+        return RetrofitInstance.getService()
+                .getResults()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Function<List<FileInfo>, ObservableSource<FileInfo>>() {
+                    @Override
+                    public ObservableSource<FileInfo> apply(final List<FileInfo> posts) throws Exception {
+                        return Observable.fromIterable(posts)
+                                .subscribeOn(Schedulers.io());
+                    }
+                });
+    }
 
-    void getFileList() {
+    /*void getFileList() {
         Call<FileList> call= RetrofitInstance.getService().getResults();
         call.enqueue(new Callback<FileList>() {
             @Override
@@ -310,8 +339,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
         }
-
-
+*/
 
 
     private void retrieveFileFromResource() {
@@ -327,8 +355,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
+
+
+    private Observable<FileInfo> getCommentsObservable(final FileInfo post){
+        return RetrofitInstance.getService()
+                .downloadFile(post.getFn())
+                .map(new Function<ResponseBody, FileInfo>() {
+                    @Override
+                    public FileInfo apply(ResponseBody body) throws Exception {
+                        Log.d(TAG, "downloaded. saving...");
+                        post.error = processKmzResponse(body, post.getFn())?0:-1;
+                        //post.setComments(comments);
+                        return post;
+                    }
+                })
+                .subscribeOn(Schedulers.io());
+
+    }
+
     public void onBtnClicked(View v) {
-        getFileList();
+        getPostsObservable()
+                .subscribeOn(Schedulers.io())
+                .flatMap(new Function<FileInfo, ObservableSource<FileInfo>>() {
+                    @Override
+                    public ObservableSource<FileInfo> apply(FileInfo post) throws Exception {
+                        return getCommentsObservable(post);
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FileInfo>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposables.add(d);
+                    }
+
+                    @Override
+                    public void onNext(FileInfo post) {
+                        Log.d(TAG, "onNext: "+post);
+                        //updatePost(post);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "onError: ", e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.e(TAG, "onComplete");
+                    }
+                });
+        //getFileList();
         //new Decompress2("/storage/emulated/0/Download/to am.kmz", "/storage/emulated/0/Download/", this).execute();
 
     }
