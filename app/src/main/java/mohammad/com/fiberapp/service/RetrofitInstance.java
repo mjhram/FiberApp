@@ -15,7 +15,6 @@ public class RetrofitInstance {
             retrofit = new Retrofit
                     .Builder()
                     .baseUrl(BASE_URL)
-                    //.addConverterFactory(ScalarsConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

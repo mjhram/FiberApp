@@ -32,6 +32,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -44,8 +45,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import mohammad.com.fiberapp.model.FileInfo;
-import mohammad.com.fiberapp.model.FileList;
+import mohammad.com.fiberapp.model.myFileInfo;
 import mohammad.com.fiberapp.service.RetrofitInstance;
 import mohammad.com.fiberapp.utility.Decompress2;
 import okhttp3.ResponseBody;
@@ -60,7 +60,7 @@ import static android.widget.Toast.LENGTH_LONG;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final int PERMISSION_REQUEST_CODE = 200;
     private GoogleMap mMap;
-    private FileList localFList;
+    private ArrayList<myFileInfo> localFList;
     private CompositeDisposable disposables = new CompositeDisposable();
 
     @NonNull
@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        localFList = Prefs.getFList(this);
+        localFList = Prefs.loadFList(this);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
             startActivity(MainActivity.createIntent(this));
@@ -291,14 +291,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 */
-    private Observable<FileInfo> getPostsObservable(){
+    private Observable<myFileInfo> getPostsObservable(){
         return RetrofitInstance.getService()
                 .getResults()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Function<List<FileInfo>, ObservableSource<FileInfo>>() {
+                .flatMap(new Function<List<myFileInfo>, ObservableSource<myFileInfo>>() {
                     @Override
-                    public ObservableSource<FileInfo> apply(final List<FileInfo> posts) throws Exception {
+                    public ObservableSource<myFileInfo> apply(final List<myFileInfo> posts) throws Exception {
                         return Observable.fromIterable(posts)
                                 .subscribeOn(Schedulers.io());
                     }
@@ -357,12 +357,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    private Observable<FileInfo> getCommentsObservable(final FileInfo post){
+    private Observable<myFileInfo> getCommentsObservable(final myFileInfo post){
         return RetrofitInstance.getService()
                 .downloadFile(post.getFn())
-                .map(new Function<ResponseBody, FileInfo>() {
+                .map(new Function<ResponseBody, myFileInfo>() {
                     @Override
-                    public FileInfo apply(ResponseBody body) throws Exception {
+                    public myFileInfo apply(ResponseBody body) throws Exception {
                         Log.d(TAG, "downloaded. saving...");
                         post.error = processKmzResponse(body, post.getFn())?0:-1;
                         //post.setComments(comments);
@@ -376,21 +376,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onBtnClicked(View v) {
         getPostsObservable()
                 .subscribeOn(Schedulers.io())
-                .flatMap(new Function<FileInfo, ObservableSource<FileInfo>>() {
+                .flatMap(new Function<myFileInfo, ObservableSource<myFileInfo>>() {
                     @Override
-                    public ObservableSource<FileInfo> apply(FileInfo post) throws Exception {
+                    public ObservableSource<myFileInfo> apply(myFileInfo post) throws Exception {
                         return getCommentsObservable(post);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<FileInfo>() {
+                .subscribe(new Observer<myFileInfo>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                         disposables.add(d);
                     }
 
                     @Override
-                    public void onNext(FileInfo post) {
+                    public void onNext(myFileInfo post) {
                         Log.d(TAG, "onNext: "+post);
                         //updatePost(post);
                     }

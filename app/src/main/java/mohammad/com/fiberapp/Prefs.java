@@ -3,15 +3,19 @@ package mohammad.com.fiberapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import mohammad.com.fiberapp.model.FileList;
+import mohammad.com.fiberapp.model.myFileInfo;
 
 public class Prefs {
     static private String SP_NAME = "AppSettings";
+    public static final String FLIST_KEY = "File_List";
 
-    public static void putFList(FileList fList, Context mContext) {
+    /*public static void putFList(FileList fList, Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -26,9 +30,42 @@ public class Prefs {
             }
             editor.apply();
         }
+    }*/
+
+    public static void saveFList(Context context, List<myFileInfo> flist) {
+        SharedPreferences settings;
+        SharedPreferences.Editor editor;
+
+        settings = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        editor = settings.edit();
+
+        Gson gson = new Gson();
+        String jsonFavorites = gson.toJson(flist);
+
+        editor.putString(FLIST_KEY, jsonFavorites);
+        editor.commit();
     }
 
-    public static FileList getFList(Context mContext) {
+    public static ArrayList<myFileInfo> loadFList(Context context) {
+        SharedPreferences settings;
+        List<myFileInfo> flist;
+
+        settings = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+        if (settings.contains(FLIST_KEY)) {
+            String jsonFavorites = settings.getString(FLIST_KEY, null);
+            Gson gson = new Gson();
+            myFileInfo[] favoriteItems = gson.fromJson(jsonFavorites,
+                    myFileInfo[].class);
+
+            flist = Arrays.asList(favoriteItems);
+            flist = new ArrayList<myFileInfo>(flist);
+        } else
+            return null;
+
+        return (ArrayList<myFileInfo>) flist;
+    }
+
+    /*public static FileList `(Context mContext) {
         //if size =0, return
         //files.get(i) may equal ""
         //fdates.get(i) may equal 0
@@ -48,7 +85,7 @@ public class Prefs {
         }
 
         return fList;
-    }
+    }*/
 
     public static void setPrefs(String key, String value, Context context){
         SharedPreferences sharedpreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);

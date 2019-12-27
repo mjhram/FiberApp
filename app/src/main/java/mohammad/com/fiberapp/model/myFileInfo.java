@@ -3,7 +3,7 @@ package mohammad.com.fiberapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FileInfo {
+public class myFileInfo {
     @SerializedName("fn")
     @Expose
     private String fn;
