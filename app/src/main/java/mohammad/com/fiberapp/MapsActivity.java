@@ -25,13 +25,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.maps.android.data.Feature;
+import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.kml.KmlLayer;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -79,7 +87,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             finish();
             return;
         }
-        //IdpResponse response = getIntent().getParcelableExtra(ExtraConstants.IDP_RESPONSE);
 
         setContentView(R.layout.activity_maps);
         if (!checkPermission()) {
@@ -181,8 +188,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    private boolean processGeojsonResponse(ResponseBody body, final String filename) {
+        try {
+            InputStream inputStream = null;
+            BufferedInputStream bis=null;
+
+            try {
+                inputStream = body.byteStream();
+                bis = new BufferedInputStream(inputStream);
+                // Remove the extension.
+                int extensionIndex = filename.lastIndexOf(".");
+                String fname;
+                if (extensionIndex != -1)
+                    fname = filename;
+                fname = filename.substring(0, extensionIndex);
+                fname += ".geojson";
+                Decompress2.extractEntry("/storage/emulated/0/Download/", null, bis, fname);
+                return true;
+            } catch (IOException e) {
+                return false;
+            } /*catch (XmlPullParserException e) {
+                e.printStackTrace();
+                return false;
+            } */finally {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (bis != null) {
+                    bis.close();
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     private boolean processKmzResponse(ResponseBody body, final String filename) {
-        KmlLayer kmlLayer = null;
+        //KmlLayer kmlLayer = null;
         try {
             // todo change the file location/name according to your needs
             //File outFile = new File(getExternalFilesDir(null) + File.separator + "1.kmz");
@@ -233,22 +275,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     zipInputStream.closeEntry();
                 }
 
-/*
-                            while (true) {
-                                int read = inputStream.read(fileReader);
-                                if (read == -1) {
-                                    break;
-                                }
-
-                                outputStream.write(fileReader, 0, read);
-
-                                fileSizeDownloaded += read;
-
-                                Log.d(TAG, "file download: " + fileSizeDownloaded + " of " + fileSize);
-                            }
-
-                outputStream.flush();*/
-
                 return true;
             } catch (IOException e) {
                 return false;
@@ -269,28 +295,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     final String TAG = "FiberApp";
-  /*  void downloadAFile(String filename, long filedate) {
-        Call<ResponseBody> call2 = RetrofitInstance.getService().downloadFile(filename);
+    ArrayList<myFileInfo> remoteFileInfo;
 
-        call2.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Log.d(TAG, "server contacted and has file");
-                    boolean writtenToDisk = processKmzResponse(response.body(), filename);
-                    Log.d(TAG, "file download was a success? " + writtenToDisk);
-                } else {
-                    Log.d(TAG, "server contact failed");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e(TAG, "error");
-            }
-        });
-    }
-*/
     private Observable<myFileInfo> getPostsObservable(){
         return RetrofitInstance.getService()
                 .getResults()
@@ -299,63 +305,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .flatMap(new Function<List<myFileInfo>, ObservableSource<myFileInfo>>() {
                     @Override
                     public ObservableSource<myFileInfo> apply(final List<myFileInfo> posts) throws Exception {
+                        remoteFileInfo = (ArrayList<myFileInfo>) posts;
                         return Observable.fromIterable(posts)
                                 .subscribeOn(Schedulers.io());
                     }
                 });
     }
-
-    /*void getFileList() {
-        Call<FileList> call= RetrofitInstance.getService().getResults();
-        call.enqueue(new Callback<FileList>() {
-            @Override
-            public void onResponse(Call<FileList> call, Response<FileList> response) {
-                //agendaArrayList = response.body();
-                FileList remoteFList = response.body();
-                if(remoteFList == null) {
-                    if(getApplicationContext() != null) {
-                        Toast.makeText(getApplicationContext(), "No data available. Use existing data", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    for (int i=0; i<remoteFList.getFiles().size(); i++) {
-                        String filename = remoteFList.getFiles().get(i);
-                        Long fdate = remoteFList.getFdates().get(i);
-                        //if(localFList.getFiles().indexOf(filename) == -1 || localFList.getFdates().indexOf(fdate) == -1){
-                        if(localFList.getFiles().indexOf(filename) == -1){//file not exist on local
-                            //add
-                            downloadAFile(filename, fdate);
-                        } else if(localFList.getFdates().indexOf(fdate) == -1){//file exist, but old
-                            //overwrite
-                            downloadAFile(filename, fdate);
-                        }
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<FileList> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Failure", Toast.LENGTH_SHORT).show();
-            }
-        });
-        }
-*/
-
-
-    private void retrieveFileFromResource() {
-        try {
-            KmlLayer kmlLayer = new KmlLayer(mMap, R.raw.to_am, this);
-            kmlLayer.addLayerToMap();
-            //moveCameraToKml(kmlLayer);
-            // Add a marker in Sydney and move the camera
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     private Observable<myFileInfo> getCommentsObservable(final myFileInfo post){
         return RetrofitInstance.getService()
@@ -364,7 +319,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public myFileInfo apply(ResponseBody body) throws Exception {
                         Log.d(TAG, "downloaded. saving...");
-                        post.error = processKmzResponse(body, post.getFn())?0:-1;
+                        String tmp = post.getFn();
+                        String extension = tmp.substring(tmp.lastIndexOf("."));
+                        if(extension.equalsIgnoreCase(".kmz")) {
+                            post.error = processKmzResponse(body, post.getFn()) ? 0 : -1;
+                        } else if (extension.equalsIgnoreCase(".geojson")) {
+                            post.error = processGeojsonResponse(body, post.getFn()) ? 0 : -1;
+                        }
                         //post.setComments(comments);
                         return post;
                     }
@@ -373,12 +334,65 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    int findFileInfo(myFileInfo fileInfo) {
+        for(int i=0; i<localFList.size(); i++) {
+            myFileInfo f = localFList.get(i);
+            if(f.getFn()==fileInfo.getFn() && f.getDt()==fileInfo.getDt()) {
+                //already exist
+                return i;
+            }
+        }
+        return -1;
+    }
+    JSONObject getJsonFromFile (String fname) {
+        try {
+
+            BufferedReader input = null;
+            FileInputStream contentfile = null;
+            try {
+                contentfile = new FileInputStream("/storage/emulated/0/Download/" + fname);
+                input = new BufferedReader(new InputStreamReader(contentfile));
+                String line;
+                StringBuffer content = new StringBuffer();
+                char[] buffer = new char[1024];
+                int num;
+                while ((num = input.read(buffer)) > 0) {
+                    content.append(buffer, 0, num);
+                }
+                JSONObject jsonObject = new JSONObject(content.toString());
+                return jsonObject;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            } finally {
+                if (contentfile != null) {
+                    contentfile.close();
+                }
+                if (input != null) {
+                    input.close();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    ArrayList<KmlLayer> layers = new ArrayList<>();
+
     public void onBtnClicked(View v) {
         getPostsObservable()
                 .subscribeOn(Schedulers.io())
                 .flatMap(new Function<myFileInfo, ObservableSource<myFileInfo>>() {
                     @Override
                     public ObservableSource<myFileInfo> apply(myFileInfo post) throws Exception {
+
                         return getCommentsObservable(post);
                     }
                 })
@@ -390,8 +404,79 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                     @Override
-                    public void onNext(myFileInfo post) {
-                        Log.d(TAG, "onNext: "+post);
+                    public void onNext(myFileInfo fileInfo) {
+                        Log.d(TAG, "onNext: "+fileInfo);
+                        FileInputStream is = null;
+                        BufferedInputStream bis = null;
+                        try {
+
+                            String filename = fileInfo.getFn();
+                            int extensionIndex = filename.lastIndexOf(".");
+                            String extension = filename.substring(extensionIndex);
+                            String fname;
+                            if (extensionIndex != -1)
+                                fname = filename;
+                            fname = filename.substring(0, extensionIndex);
+                            if(extension.equalsIgnoreCase(".kmz"))
+                                fname += ".kml";
+                            else if(extension.equalsIgnoreCase(".geojson"))
+                                fname += ".geojson";
+
+                            is = new FileInputStream("/storage/emulated/0/Download/"+fname);
+                            bis = new BufferedInputStream(is);
+                            if(extension.equalsIgnoreCase(".kmz")) {
+                                KmlLayer kmlLayer = null;
+                                kmlLayer = new KmlLayer(mMap, bis, MapsActivity.this);
+                                kmlLayer.addLayerToMap();
+                                layers.add(kmlLayer);
+                                kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                                    @Override
+                                    public void onFeatureClick(Feature feature) {
+                                        if (feature == null) {
+                                            Log.d(TAG, "feature is null");
+                                            return;
+                                        }
+                                        String ss = feature.getProperty("description");//getId();
+                                        Toast.makeText(MapsActivity.this,
+                                                "Coming soon",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } else if(extension.equalsIgnoreCase(".geojson")) {
+                                GeoJsonLayer theLayer = null;
+                                theLayer = new GeoJsonLayer(mMap, getJsonFromFile(fname));
+                                theLayer.addLayerToMap();
+                                //layers.add(kmlLayer);
+                                theLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                                    @Override
+                                    public void onFeatureClick(Feature feature) {
+                                        if (feature == null) {
+                                            Log.d(TAG, "feature is null");
+                                            return;
+                                        }
+                                        String ss = feature.getProperty("description");//getId();
+                                        Toast.makeText(MapsActivity.this,
+                                                "Coming soon",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (XmlPullParserException e) {
+                            e.printStackTrace();
+                        } finally {
+                            try {
+                                if (bis != null) {
+                                    bis.close();
+                                }
+                                if (is != null)
+                                    is.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                         //updatePost(post);
                     }
 
@@ -402,6 +487,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     @Override
                     public void onComplete() {
+                        Prefs.saveFList(MapsActivity.this,remoteFileInfo);
                         Log.e(TAG, "onComplete");
                     }
                 });
