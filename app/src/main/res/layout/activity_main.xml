@@ -6,50 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvInternet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INTERNET"
-            android:height="50dp"
+            android:layout_above="@+id/btnRequestAll"
+            android:textAlignment="center"
+            android:text="Some of Permission were not granted. The app will work without these permissions"
+            android:textSize="20sp" />
 
-            />
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LOCATION"
-            android:height="50dp"
-
-            />
-        <TextView
-            android:id="@+id/tvRdStorage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="READ_STORAGE"
-            android:height="50dp"
-
-            />
-        <TextView
-            android:id="@+id/tvWrStorage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="WRITE_STORAGE"
-            android:height="50dp"
-            />
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRequestAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Request Permissions for App"
             android:layout_centerInParent="true"
             />
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

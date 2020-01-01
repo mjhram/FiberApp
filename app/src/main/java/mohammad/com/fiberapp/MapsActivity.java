@@ -1,10 +1,7 @@
 package mohammad.com.fiberapp;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.firebase.ui.auth.IdpResponse;
@@ -73,10 +69,9 @@ import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-import static android.widget.Toast.LENGTH_LONG;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
-    private static final int PERMISSION_REQUEST_CODE = 200;
+    //private static final int PERMISSION_REQUEST_CODE = 200;
     private GoogleMap mMap;
     private ArrayList<myFileInfo> localFList;
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -98,7 +93,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         localFList = Prefs.loadFList(this);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null) {
+        if (currentUser == null || !checkPermission()) {
             startActivity(MainActivity.createIntent(this));
             finish();
             return;
@@ -108,9 +103,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         ButterKnife.bind(this);
         setSupportActionBar(myToolbar);
         mySpinner.setOnItemSelectedListener(this);
-        if (!checkPermission()) {
+        /*if (!checkPermission()) {
             requestPermission();
-        } else {
+        } else */
+        {
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
@@ -152,7 +148,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ;
     }
 
-    private void requestPermission() {
+    /*private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
     }
 
@@ -207,7 +203,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 break;
         }
-    }
+    }*/
 
     private boolean processGeojsonResponse(ResponseBody body, final String filename) {
         try {
