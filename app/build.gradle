@@ -20,8 +20,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
@@ -60,8 +60,8 @@ dependencies {
     implementation("com.squareup.okio:okio:2.4.3")
 
     implementation 'com.android.support:multidex:1.0.3'
-
-
+    implementation 'com.karumi:dexter:6.0.1'
+    implementation 'com.nabinbhandari.android:permissions:3.8'
 
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

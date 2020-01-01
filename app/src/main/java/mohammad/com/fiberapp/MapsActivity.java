@@ -7,14 +7,21 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.util.ExtraConstants;
@@ -35,6 +42,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,6 +53,8 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
@@ -65,11 +75,16 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static android.widget.Toast.LENGTH_LONG;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
     private static final int PERMISSION_REQUEST_CODE = 200;
     private GoogleMap mMap;
     private ArrayList<myFileInfo> localFList;
     private CompositeDisposable disposables = new CompositeDisposable();
+
+    @BindView(R.id.toolbar)
+    Toolbar myToolbar;
+    @BindView(R.id.spinner)
+    Spinner mySpinner;
 
     @NonNull
     public static Intent createIntent(@NonNull Context context, @Nullable IdpResponse response) {
@@ -80,6 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         localFList = Prefs.loadFList(this);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
@@ -89,13 +105,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         setContentView(R.layout.activity_maps);
+        ButterKnife.bind(this);
+        setSupportActionBar(myToolbar);
+        mySpinner.setOnItemSelectedListener(this);
         if (!checkPermission()) {
             requestPermission();
+        } else {
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
         }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
     }
 
 
@@ -114,6 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng bgd = new LatLng(33.2967658, 44.4707338);
         //mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
+        updateData();
         //retrieveFileFromResource();
         //getFileList();
 
@@ -223,6 +244,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    private String changeExt(String filename) {
+        int extensionIndex = filename.lastIndexOf(".");
+        String fname;
+        if (extensionIndex != -1)
+            fname = filename;
+        fname = filename.substring(0, extensionIndex);
+        fname += ".kml";
+        return fname;
+    }
     private boolean processKmzResponse(ResponseBody body, final String filename) {
         //KmlLayer kmlLayer = null;
         try {
@@ -248,12 +278,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                     if (!zipEntry.isDirectory() && zipEntry.getName().endsWith(".kml")) {
                         // Remove the extension.
-                        int extensionIndex = filename.lastIndexOf(".");
-                        String fname;
+                        String fname = changeExt(filename);
+
+                        /*int extensionIndex = filename.lastIndexOf(".");
                         if (extensionIndex != -1)
                             fname = filename;
                         fname = filename.substring(0, extensionIndex);
-                        fname += ".kml";
+                        fname += ".kml";*/
                         Decompress2.extractEntry("/storage/emulated/0/Download/", zipEntry, zipInputStream, fname);
 
                         /*String fileName = zipEntry.getName();
@@ -297,6 +328,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     final String TAG = "FiberApp";
     ArrayList<myFileInfo> remoteFileInfo;
 
+    public void syncFlist() {
+        //1. already the updated fies are overwritten
+        //2.add the new files
+        int sz = remoteFileInfo.size();
+        for(int i=0; i<sz; i++) {
+            myFileInfo rfi = remoteFileInfo.get(i);
+            boolean exist = false;
+            for(int j=0; j<localFList.size(); j++) {
+                myFileInfo lfi = localFList.get(j);
+                if(rfi.getFn().equalsIgnoreCase(lfi.getFn()) && rfi.getDt().equalsIgnoreCase(lfi.getDt())){
+                    exist = true;
+                    break;
+                }
+            }
+            if(!exist) {
+                //add the new fileInfo to local list
+                localFList.add(rfi);
+            }
+        }
+        for(int j=localFList.size()-1; j>=0; j--) {
+            myFileInfo lfi = localFList.get(j);
+            boolean exist = false;
+            for(int i=0; i<remoteFileInfo.size(); i++) {
+                myFileInfo rfi = remoteFileInfo.get(i);
+                if(rfi.getFn().equalsIgnoreCase(lfi.getFn()) && rfi.getDt().equalsIgnoreCase(lfi.getDt())){
+                    exist = true;
+                    break;
+                }
+            }
+            if(!exist) {
+                //remove the new fileInfo from local list
+                String tmp ="/storage/emulated/0/Download/"+localFList.get(j).getFn();
+                new File(tmp).delete();
+                localFList.remove(j);
+            }
+        }
+    }
+
     private Observable<myFileInfo> getPostsObservable(){
         return RetrofitInstance.getService()
                 .getResults()
@@ -304,9 +373,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Function<List<myFileInfo>, ObservableSource<myFileInfo>>() {
                     @Override
-                    public ObservableSource<myFileInfo> apply(final List<myFileInfo> posts) throws Exception {
-                        remoteFileInfo = (ArrayList<myFileInfo>) posts;
-                        return Observable.fromIterable(posts)
+                    public ObservableSource<myFileInfo> apply(final List<myFileInfo> flist) throws Exception {
+                        remoteFileInfo = (ArrayList<myFileInfo>) flist;
+                        return Observable.fromIterable(flist)
                                 .subscribeOn(Schedulers.io());
                     }
                 });
@@ -384,9 +453,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    ArrayList<KmlLayer> layers = new ArrayList<>();
-
-    public void onBtnClicked(View v) {
+    void updateData() {
         getPostsObservable()
                 .subscribeOn(Schedulers.io())
                 .flatMap(new Function<myFileInfo, ObservableSource<myFileInfo>>() {
@@ -406,78 +473,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onNext(myFileInfo fileInfo) {
                         Log.d(TAG, "onNext: "+fileInfo);
-                        FileInputStream is = null;
-                        BufferedInputStream bis = null;
-                        try {
-
-                            String filename = fileInfo.getFn();
-                            int extensionIndex = filename.lastIndexOf(".");
-                            String extension = filename.substring(extensionIndex);
-                            String fname;
-                            if (extensionIndex != -1)
-                                fname = filename;
-                            fname = filename.substring(0, extensionIndex);
-                            if(extension.equalsIgnoreCase(".kmz"))
-                                fname += ".kml";
-                            else if(extension.equalsIgnoreCase(".geojson"))
-                                fname += ".geojson";
-
-                            is = new FileInputStream("/storage/emulated/0/Download/"+fname);
-                            bis = new BufferedInputStream(is);
-                            if(extension.equalsIgnoreCase(".kmz")) {
-                                KmlLayer kmlLayer = null;
-                                kmlLayer = new KmlLayer(mMap, bis, MapsActivity.this);
-                                kmlLayer.addLayerToMap();
-                                layers.add(kmlLayer);
-                                kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
-                                    @Override
-                                    public void onFeatureClick(Feature feature) {
-                                        if (feature == null) {
-                                            Log.d(TAG, "feature is null");
-                                            return;
-                                        }
-                                        String ss = feature.getProperty("description");//getId();
-                                        Toast.makeText(MapsActivity.this,
-                                                "Coming soon",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            } else if(extension.equalsIgnoreCase(".geojson")) {
-                                GeoJsonLayer theLayer = null;
-                                theLayer = new GeoJsonLayer(mMap, getJsonFromFile(fname));
-                                theLayer.addLayerToMap();
-                                //layers.add(kmlLayer);
-                                theLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
-                                    @Override
-                                    public void onFeatureClick(Feature feature) {
-                                        if (feature == null) {
-                                            Log.d(TAG, "feature is null");
-                                            return;
-                                        }
-                                        String ss = feature.getProperty("description");//getId();
-                                        Toast.makeText(MapsActivity.this,
-                                                "Coming soon",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (XmlPullParserException e) {
-                            e.printStackTrace();
-                        } finally {
-                            try {
-                                if (bis != null) {
-                                    bis.close();
-                                }
-                                if (is != null)
-                                    is.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        //updatePost(post);
                     }
 
                     @Override
@@ -487,12 +482,126 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     @Override
                     public void onComplete() {
-                        Prefs.saveFList(MapsActivity.this,remoteFileInfo);
+                        syncFlist();
+                        Prefs.saveFList(MapsActivity.this,localFList);
+                        ArrayList<String> tmp = new ArrayList<>();
+                        for(int i=0; i<localFList.size(); i++) {
+                            String fname = localFList.get(i).getFn();
+                            int ext = fname.lastIndexOf(".");
+                            tmp.add(fname.substring(0,ext));
+                        }
+                        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, android.R.layout.simple_spinner_item, tmp);
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, R.layout.item, R.id.tvItem, tmp);
+                        mySpinner.setAdapter(arrayAdapter);
+
                         Log.e(TAG, "onComplete");
                     }
                 });
+    }
+
+    public void onBtnClicked(View v) {
+        updateData();
         //getFileList();
         //new Decompress2("/storage/emulated/0/Download/to am.kmz", "/storage/emulated/0/Download/", this).execute();
 
     }
+
+    private void loadLayer(String fname, String extension) {
+        FileInputStream is = null;
+        BufferedInputStream bis = null;
+        try {
+            if(extension.equalsIgnoreCase(".kmz"))
+                fname += ".kml";
+            else if(extension.equalsIgnoreCase(".geojson"))
+                fname += ".geojson";
+
+            is = new FileInputStream("/storage/emulated/0/Download/"+fname);
+            bis = new BufferedInputStream(is);
+            if(extension.equalsIgnoreCase(".kmz")) {
+                KmlLayer kmlLayer = null;
+                kmlLayer = new KmlLayer(mMap, bis, MapsActivity.this);
+                kmlLayer.addLayerToMap();
+                kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                    @Override
+                    public void onFeatureClick(Feature feature) {
+                        if (feature == null) {
+                            Log.d(TAG, "feature is null");
+                            return;
+                        }
+                        String ss = feature.getProperty("description");//getId();
+                        Toast.makeText(MapsActivity.this,
+                                "Coming soon",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else if(extension.equalsIgnoreCase(".geojson")) {
+                GeoJsonLayer theLayer = null;
+                theLayer = new GeoJsonLayer(mMap, getJsonFromFile(fname));
+                theLayer.addLayerToMap();
+                //layers.add(kmlLayer);
+                theLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                    @Override
+                    public void onFeatureClick(Feature feature) {
+                        if (feature == null) {
+                            Log.d(TAG, "feature is null");
+                            return;
+                        }
+                        String ss = feature.getProperty("description");//getId();
+                        Toast.makeText(MapsActivity.this,
+                                "Coming soon",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bis != null) {
+                    bis.close();
+                }
+                if (is != null)
+                    is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //updatePost(post);
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        String item = adapterView.getItemAtPosition(position).toString();
+        Log.d(TAG,"Selected: "+item);
+        mMap.clear();
+        loadLayer(item, ".kmz");
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        Log.d(TAG,"nothing selected");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+
+

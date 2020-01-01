@@ -48,7 +48,7 @@ public class Prefs {
 
     public static ArrayList<myFileInfo> loadFList(Context context) {
         SharedPreferences settings;
-        List<myFileInfo> flist;
+        ArrayList<myFileInfo> flist;
 
         settings = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         if (settings.contains(FLIST_KEY)) {
@@ -57,12 +57,11 @@ public class Prefs {
             myFileInfo[] favoriteItems = gson.fromJson(jsonFavorites,
                     myFileInfo[].class);
 
-            flist = Arrays.asList(favoriteItems);
-            flist = new ArrayList<myFileInfo>(flist);
+            flist = new ArrayList<myFileInfo>(Arrays.asList(favoriteItems));
         } else
-            return null;
+            flist = new ArrayList<>();
 
-        return (ArrayList<myFileInfo>) flist;
+        return flist;
     }
 
     /*public static FileList `(Context mContext) {
