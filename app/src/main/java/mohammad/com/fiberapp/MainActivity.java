@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser == null) {
             startActivityForResult(buildSignInIntent(/*link=*/null), RC_SIGN_IN);
         } else {
-            //requestAllPermissions();
+            requestAllPermissions();
             //onAllPermissionsButtonClicked();
             //startSignedInActivity();
         }

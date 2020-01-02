@@ -7,6 +7,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
 </item-->
 <item
     android:id="@+id/action_settings"
-    android:title="Settings">
+    android:title="Settings"
+    >
 </item>
 </menu>

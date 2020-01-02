@@ -63,6 +63,8 @@ dependencies {
     implementation 'com.karumi:dexter:6.0.1'
     implementation 'com.nabinbhandari.android:permissions:3.8'
     implementation 'com.google.android.material:material:1.2.0-alpha03'
+    implementation 'com.github.Kaufland:andswipeframework:0.8.5'
+
 
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
