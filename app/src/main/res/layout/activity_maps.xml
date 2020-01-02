@@ -64,7 +64,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/llDesc">
 
             <kaufland.com.swipelibrary.SwipeLayout_
             android:id="@+id/example_1"
@@ -109,7 +110,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minHeight="100dp"
-                        android:text="desc" />
+                        android:text=""
+                        android:id="@+id/tvDesc"/>
                 </androidx.cardview.widget.CardView>
 
             </kaufland.com.swipelibrary.SurfaceView_>

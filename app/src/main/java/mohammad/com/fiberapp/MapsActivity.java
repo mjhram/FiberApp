@@ -3,6 +3,7 @@ package mohammad.com.fiberapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -80,6 +83,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Toolbar myToolbar;
     @BindView(R.id.spinner)
     Spinner mySpinner;
+    @BindView(R.id.llDesc)
+    LinearLayout llDesc;
+    @BindView(R.id.tvDesc)
+    TextView tvDesc;
 
     @NonNull
     public static Intent createIntent(@NonNull Context context, @Nullable IdpResponse response) {
@@ -127,6 +134,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                mMap.setPadding(0,myToolbar.getHeight(),0,llDesc.getHeight());
+            }
+        });
         LatLng bgd = new LatLng(33.2967658, 44.4707338);
         //mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
@@ -525,9 +538,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             return;
                         }
                         String ss = feature.getProperty("description");//getId();
-                        Toast.makeText(MapsActivity.this,
+                        tvDesc.setText(ss);
+                        /*Toast.makeText(MapsActivity.this,
                                 "Coming soon",
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT).show();*/
                     }
                 });
             } else if(extension.equalsIgnoreCase(".geojson")) {
