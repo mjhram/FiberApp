@@ -1,5 +1,11 @@
 package mohammad.com.fiberapp;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.INTERNET;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,19 +20,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.util.ExtraConstants;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.kml.KmlLayer;
@@ -60,14 +61,7 @@ import mohammad.com.fiberapp.databinding.ActivityMapsBinding;
 import mohammad.com.fiberapp.model.myFileInfo;
 import mohammad.com.fiberapp.service.RetrofitInstance;
 import mohammad.com.fiberapp.utility.Decompress2;
-import mohammad.com.fiberapp.R.id;
 import okhttp3.ResponseBody;
-
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
     //private static final int PERMISSION_REQUEST_CODE = 200;
@@ -78,9 +72,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ActivityMapsBinding binding;
 
     @NonNull
-    public static Intent createIntent(@NonNull Context context, @Nullable IdpResponse response) {
-        return new Intent().setClass(context, MapsActivity.class)
-                .putExtra(ExtraConstants.IDP_RESPONSE, response);
+    public static Intent createIntent(@NonNull Context context) {
+        return new Intent().setClass(context, MapsActivity.class);
     }
 
     @Override
@@ -88,8 +81,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
 
         localFList = Prefs.loadFList(this);
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (currentUser == null || !checkPermission()) {
+        if (!checkPermission()) {
             startActivity(MainActivity.createIntent(this));
             finish();
             return;
