@@ -11,15 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.firebase.ui.auth.IdpResponse;
@@ -52,8 +48,6 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
@@ -62,9 +56,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import mohammad.com.fiberapp.databinding.ActivityMapsBinding;
 import mohammad.com.fiberapp.model.myFileInfo;
 import mohammad.com.fiberapp.service.RetrofitInstance;
 import mohammad.com.fiberapp.utility.Decompress2;
+import mohammad.com.fiberapp.R.id;
 import okhttp3.ResponseBody;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -79,14 +75,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<myFileInfo> localFList;
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    @BindView(R.id.toolbar)
-    Toolbar myToolbar;
-    @BindView(R.id.spinner)
-    Spinner mySpinner;
-    @BindView(R.id.llDesc)
-    LinearLayout llDesc;
-    @BindView(R.id.tvDesc)
-    TextView tvDesc;
+    private ActivityMapsBinding binding;
 
     @NonNull
     public static Intent createIntent(@NonNull Context context, @Nullable IdpResponse response) {
@@ -106,10 +95,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
 
-        setContentView(R.layout.activity_maps);
-        ButterKnife.bind(this);
-        setSupportActionBar(myToolbar);
-        mySpinner.setOnItemSelectedListener(this);
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
+        binding.spinner.setOnItemSelectedListener(this);
         /*if (!checkPermission()) {
             requestPermission();
         } else */
@@ -137,7 +126,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                mMap.setPadding(0,myToolbar.getHeight(),0,llDesc.getHeight());
+                mMap.setPadding(0,binding.toolbar.getHeight(),0,binding.llDesc.getHeight());
             }
         });
         LatLng bgd = new LatLng(33.2967658, 44.4707338);
@@ -501,7 +490,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, android.R.layout.simple_spinner_item, tmp);
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, R.layout.item, R.id.tvItem, tmp);
-                        mySpinner.setAdapter(arrayAdapter);
+                        binding.spinner.setAdapter(arrayAdapter);
 
                         Log.e(TAG, "onComplete");
                     }
@@ -538,7 +527,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             return;
                         }
                         String ss = feature.getProperty("description");//getId();
-                        tvDesc.setText(ss);
+                        binding.tvDesc.setText(ss);
                         /*Toast.makeText(MapsActivity.this,
                                 "Coming soon",
                                 Toast.LENGTH_SHORT).show();*/
@@ -604,13 +593,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.action_settings) {
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }
 

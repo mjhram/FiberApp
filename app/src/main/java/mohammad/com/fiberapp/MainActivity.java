@@ -28,19 +28,13 @@ import com.nabinbhandari.android.permissions.Permissions;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import mohammad.com.fiberapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100;
 
-    @BindView(R.id.root) View mRootView;
-    @BindView(R.id.tvInternet) TextView tvInternet;
-    //@BindView(R.id.tvLocation) TextView tvLocation;
-    //@BindView(R.id.tvRdStorage) TextView tvRdStorage;
-    //@BindView(R.id.tvWrStorage) TextView tvWrStorage;
-    @BindView(android.R.id.content) View contentView;
+    private ActivityMainBinding binding;
+    private View contentView;
     private MultiplePermissionsListener allPermissionsListener;
     private PermissionRequestErrorListener errorListener;
 
@@ -52,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        contentView = findViewById(android.R.id.content);
+        binding.btnRequestAll.setOnClickListener(v -> requestAllPermissions());
         //createPermissionListeners();
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser == null) {
@@ -161,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSnackbar(@StringRes int errorMessageRes) {
-        Snackbar.make(mRootView, errorMessageRes, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(binding.getRoot(), errorMessageRes, Snackbar.LENGTH_LONG).show();
     }
 
     /*@OnClick(R.id.btnRequestAll) public void onAllPermissionsButtonClicked() {
@@ -248,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     }
 */
 
-    @OnClick(R.id.btnRequestAll) public void requestAllPermissions() {
+    public void requestAllPermissions() {
         String[] permissions = {Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION};
         Permissions.check(this, permissions, null, null, new PermissionHandler() {
             @Override
