@@ -3,66 +3,11 @@ package mohammad.com.fiberapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import mohammad.com.fiberapp.model.myFileInfo;
 
 public class Prefs {
     static private String SP_NAME = "AppSettings";
-    public static final String FLIST_KEY = "File_List";
-
-    /*public static void putFList(FileList fList, Context mContext) {
-        SharedPreferences prefs = mContext.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        int ss = fList.getFiles().size();
-        if(ss != fList.getFdates().size()) {
-            //bad fileList.do nothing
-        } else {
-            editor.putInt("size", ss);
-            for (int i = 0; i < ss; i++) {
-                editor.putString("fn"+i, fList.getFiles().get(i));
-                editor.putLong("fd"+i, fList.getFdates().get(i));
-            }
-            editor.apply();
-        }
-    }*/
-
-    public static void saveFList(Context context, List<myFileInfo> flist) {
-        SharedPreferences settings;
-        SharedPreferences.Editor editor;
-
-        settings = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        editor = settings.edit();
-
-        Gson gson = new Gson();
-        String jsonFavorites = gson.toJson(flist);
-
-        editor.putString(FLIST_KEY, jsonFavorites);
-        editor.commit();
-    }
-
-    public static ArrayList<myFileInfo> loadFList(Context context) {
-        SharedPreferences settings;
-        ArrayList<myFileInfo> flist;
-
-        settings = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        if (settings.contains(FLIST_KEY)) {
-            String jsonFavorites = settings.getString(FLIST_KEY, null);
-            Gson gson = new Gson();
-            myFileInfo[] favoriteItems = gson.fromJson(jsonFavorites,
-                    myFileInfo[].class);
-
-            flist = new ArrayList<myFileInfo>(Arrays.asList(favoriteItems));
-        } else
-            flist = new ArrayList<>();
-
-        return flist;
-    }
 
     /*public static FileList `(Context mContext) {
         //if size =0, return

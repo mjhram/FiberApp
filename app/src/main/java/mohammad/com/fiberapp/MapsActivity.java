@@ -1,13 +1,8 @@
 package mohammad.com.fiberapp;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.INTERNET;
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,8 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.documentfile.provider.DocumentFile;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,39 +34,30 @@ import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import mohammad.com.fiberapp.databinding.ActivityMapsBinding;
-import mohammad.com.fiberapp.model.myFileInfo;
-import mohammad.com.fiberapp.service.RetrofitInstance;
-import mohammad.com.fiberapp.utility.Decompress2;
-import okhttp3.ResponseBody;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
-    //private static final int PERMISSION_REQUEST_CODE = 200;
-    private GoogleMap mMap;
-    private ArrayList<myFileInfo> localFList;
-    private CompositeDisposable disposables = new CompositeDisposable();
 
+    private static final int RC_PICK_FOLDER = 200;
+    private static final String PREF_FOLDER_URI = "map_folder_uri";
+    final String TAG = "FiberApp";
+
+    private GoogleMap mMap;
     private ActivityMapsBinding binding;
+
+    // Files found in the chosen folder that match .kmz / .geojson, in the order shown in the spinner.
+    private final ArrayList<DocumentFile> mapFiles = new ArrayList<>();
 
     @NonNull
     public static Intent createIntent(@NonNull Context context) {
@@ -80,7 +68,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        localFList = Prefs.loadFList(this);
         if (!checkPermission()) {
             startActivity(MainActivity.createIntent(this));
             finish();
@@ -91,26 +78,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         binding.spinner.setOnItemSelectedListener(this);
-        /*if (!checkPermission()) {
-            requestPermission();
-        } else */
-        {
+
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
-    }
-
 
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -122,452 +99,188 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         LatLng bgd = new LatLng(33.2967658, 44.4707338);
-        //mMap.addMarker(new MarkerOptions().position(bgd).title("Marker in Sydney"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
-        updateData();
-        //retrieveFileFromResource();
-        //getFileList();
 
-
+        loadSavedFolderOrPrompt();
     }
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
-        int result1 = ContextCompat.checkSelfPermission(getApplicationContext(), INTERNET);
-        int result2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
-        int result3 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
-
-        return result == PERMISSION_GRANTED && result1 == PERMISSION_GRANTED &&
-                result2 == PERMISSION_GRANTED && result3 == PERMISSION_GRANTED
-                ;
+        return result == PERMISSION_GRANTED;
     }
 
-    /*private void requestPermission() {
-        ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION, INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-    }
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0) {
-                    boolean locationAccepted = grantResults[0] == PERMISSION_GRANTED;
-                    boolean inetAccepted = grantResults[1] == PERMISSION_GRANTED;
-                    boolean readAccepted = grantResults[2] == PERMISSION_GRANTED;
-                    boolean writeAccepted = grantResults[3] == PERMISSION_GRANTED;
-
-                    if (locationAccepted && inetAccepted && readAccepted && writeAccepted) {
-                        Toast.makeText(this, "Permission Granted. Now you can use the app.", LENGTH_LONG).show();
-                    } else {
-                    //if (!locationAccepted) {
-                        //Toast.makeText(this, "Location Permission is not granted. You cannot use the app.", LENGTH_LONG).show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(ACCESS_FINE_LOCATION) ||
-                                    shouldShowRequestPermissionRationale(INTERNET) ||
-                                    shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE) ||
-                                    shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE)
-                            ) {
-                                showMessageOKCancel("You need to allow access to permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{ACCESS_FINE_LOCATION, INTERNET, READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE},
-                                                            PERMISSION_REQUEST_CODE);
+    /**
+     * Tries to reuse a previously picked folder. Falls back to asking the user to pick one.
+     */
+    private void loadSavedFolderOrPrompt() {
+        String saved = Prefs.getPrefs(PREF_FOLDER_URI, this);
+        if (saved != null && !saved.isEmpty()) {
+            Uri treeUri = Uri.parse(saved);
+            DocumentFile dir = DocumentFile.fromTreeUri(this, treeUri);
+            if (dir != null && dir.canRead()) {
+                scanFolder(treeUri);
+                return;
                                                 }
                                             }
-                                        });
+        pickFolder();
+                        }
+
+    /**
+     * Launches the system folder picker (Storage Access Framework) so the user can choose
+     * where their .kmz / .geojson files live on the device.
+     */
+    private void pickFolder() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        startActivityForResult(intent, RC_PICK_FOLDER);
+                    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_PICK_FOLDER && resultCode == RESULT_OK && data != null) {
+            Uri treeUri = data.getData();
+            if (treeUri == null) return;
+
+            // Keep access to this folder across app restarts.
+            getContentResolver().takePersistableUriPermission(treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Prefs.setPrefs(PREF_FOLDER_URI, treeUri.toString(), this);
+            scanFolder(treeUri);
+                }
+        }
+
+    /**
+     * Scans the chosen folder for .kmz / .geojson files and populates the spinner with them.
+     * No network call is made - everything is read directly off the device.
+     */
+    private void scanFolder(Uri treeUri) {
+        mapFiles.clear();
+
+        DocumentFile dir = DocumentFile.fromTreeUri(this, treeUri);
+        if (dir != null && dir.isDirectory()) {
+            for (DocumentFile f : dir.listFiles()) {
+                if (!f.isFile()) continue;
+                String name = f.getName();
+                if (name == null) continue;
+                String lower = name.toLowerCase();
+                if (lower.endsWith(".kmz") || lower.endsWith(".geojson")) {
+                    mapFiles.add(f);
+                }
+            }
+    }
+
+        ArrayList<String> displayNames = new ArrayList<>();
+        for (DocumentFile f : mapFiles) {
+            String name = f.getName();
+            int dot = name.lastIndexOf('.');
+            displayNames.add(dot != -1 ? name.substring(0, dot) : name);
+    }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.tvItem, displayNames);
+        binding.spinner.setAdapter(arrayAdapter);
+
+        if (mapFiles.isEmpty()) {
+            Toast.makeText(this, "No .kmz or .geojson files found in the selected folder", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+    /**
+     * Reads the given file directly from the device (via the Storage Access Framework) and
+     * renders it on the map. .kmz files are unzipped in-memory to find the embedded .kml;
+     * .geojson files are parsed directly. Nothing is downloaded or written elsewhere.
+     */
+    private void loadLayer(DocumentFile file) {
+        String name = file.getName();
+        if (name == null) return;
+        String lower = name.toLowerCase();
+
+        try (InputStream is = getContentResolver().openInputStream(file.getUri())) {
+            if (is == null) return;
+
+            if (lower.endsWith(".kmz")) {
+                loadKmz(is);
+            } else if (lower.endsWith(".geojson")) {
+                loadGeoJson(is);
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to open file: " + name, e);
+            Toast.makeText(this, "Could not open " + name, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void loadKmz(InputStream is) {
+        try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(is))) {
+            ZipEntry entry;
+            boolean found = false;
+            while ((entry = zis.getNextEntry()) != null) {
+                if (!entry.isDirectory() && entry.getName().toLowerCase().endsWith(".kml")) {
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    byte[] buffer = new byte[4096];
+                    int n;
+                    while ((n = zis.read(buffer)) > 0) {
+                        baos.write(buffer, 0, n);
+    }
+
+                    KmlLayer kmlLayer = new KmlLayer(mMap, new ByteArrayInputStream(baos.toByteArray()), MapsActivity.this);
+                    kmlLayer.addLayerToMap();
+                    kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+                    @Override
+                        public void onFeatureClick(Feature feature) {
+                            if (feature == null) {
+                                Log.d(TAG, "feature is null");
                                 return;
                             }
-                        }
-
-                    }
-
-                }
-
-
-                break;
-        }
-    }*/
-
-    private boolean processGeojsonResponse(ResponseBody body, final String filename) {
-        try {
-            InputStream inputStream = null;
-            BufferedInputStream bis=null;
-
-            try {
-                inputStream = body.byteStream();
-                bis = new BufferedInputStream(inputStream);
-                // Remove the extension.
-                int extensionIndex = filename.lastIndexOf(".");
-                String fname;
-                if (extensionIndex != -1)
-                    fname = filename;
-                fname = filename.substring(0, extensionIndex);
-                fname += ".geojson";
-                Decompress2.extractEntry("/storage/emulated/0/Download/", null, bis, fname);
-                return true;
-            } catch (IOException e) {
-                return false;
-            } /*catch (XmlPullParserException e) {
-                e.printStackTrace();
-                return false;
-            } */finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (bis != null) {
-                    bis.close();
-                }
-            }
-        } catch (IOException e) {
-            return false;
-        }
-    }
-
-    private String changeExt(String filename) {
-        int extensionIndex = filename.lastIndexOf(".");
-        String fname;
-        if (extensionIndex != -1)
-            fname = filename;
-        fname = filename.substring(0, extensionIndex);
-        fname += ".kml";
-        return fname;
-    }
-    private boolean processKmzResponse(ResponseBody body, final String filename) {
-        //KmlLayer kmlLayer = null;
-        try {
-            // todo change the file location/name according to your needs
-            //File outFile = new File(getExternalFilesDir(null) + File.separator + "1.kmz");
-
-            InputStream inputStream = null;
-            //OutputStream outputStream = null;
-            ZipInputStream zipInputStream=null;
-
-            try {
-                byte[] fileReader = new byte[4096];
-
-                long fileSize = body.contentLength();
-                long fileSizeDownloaded = 0;
-
-                inputStream = body.byteStream();
-                zipInputStream = new ZipInputStream(new BufferedInputStream(inputStream));
-
-                //FileOutputStream outputStream = this.openFileOutput(filename, Context.MODE_PRIVATE);
-                    //outputStream = new FileOutputStream(outFile);
-                ZipEntry zipEntry;
-                while ((zipEntry = zipInputStream.getNextEntry()) != null) {
-                    if (!zipEntry.isDirectory() && zipEntry.getName().endsWith(".kml")) {
-                        // Remove the extension.
-                        String fname = changeExt(filename);
-
-                        /*int extensionIndex = filename.lastIndexOf(".");
-                        if (extensionIndex != -1)
-                            fname = filename;
-                        fname = filename.substring(0, extensionIndex);
-                        fname += ".kml";*/
-                        Decompress2.extractEntry("/storage/emulated/0/Download/", zipEntry, zipInputStream, fname);
-
-                        /*String fileName = zipEntry.getName();
-                        if (fileName.endsWith(".kml")) {
-                            kmlLayer = new KmlLayer(mMap, zipInputStream, MapsActivity.this);
-                            kmlLayer.addLayerToMap();
-                            kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
-                                @Override
-                                public void onFeatureClick(Feature feature) {
-                                    String ss = feature.getProperty("description");//getId();
-                                    Toast.makeText(MapsActivity.this,
-                                            "Coming soon" ,
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            break;
-                        }*/
-                    }
-                    zipInputStream.closeEntry();
-                }
-
-                return true;
-            } catch (IOException e) {
-                return false;
-            } /*catch (XmlPullParserException e) {
-                e.printStackTrace();
-                return false;
-            } */finally {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (zipInputStream != null) {
-                    zipInputStream.close();
-                }
-            }
-        } catch (IOException e) {
-            return false;
-        }
-    }
-
-    final String TAG = "FiberApp";
-    ArrayList<myFileInfo> remoteFileInfo;
-
-    public void syncFlist() {
-        //1. already the updated fies are overwritten
-        //2.add the new files
-        int sz = remoteFileInfo.size();
-        for(int i=0; i<sz; i++) {
-            myFileInfo rfi = remoteFileInfo.get(i);
-            boolean exist = false;
-            for(int j=0; j<localFList.size(); j++) {
-                myFileInfo lfi = localFList.get(j);
-                if(rfi.getFn().equalsIgnoreCase(lfi.getFn()) && rfi.getDt().equalsIgnoreCase(lfi.getDt())){
-                    exist = true;
-                    break;
-                }
-            }
-            if(!exist) {
-                //add the new fileInfo to local list
-                localFList.add(rfi);
-            }
-        }
-        for(int j=localFList.size()-1; j>=0; j--) {
-            myFileInfo lfi = localFList.get(j);
-            boolean exist = false;
-            for(int i=0; i<remoteFileInfo.size(); i++) {
-                myFileInfo rfi = remoteFileInfo.get(i);
-                if(rfi.getFn().equalsIgnoreCase(lfi.getFn()) && rfi.getDt().equalsIgnoreCase(lfi.getDt())){
-                    exist = true;
-                    break;
-                }
-            }
-            if(!exist) {
-                //remove the new fileInfo from local list
-                String tmp ="/storage/emulated/0/Download/"+localFList.get(j).getFn();
-                new File(tmp).delete();
-                localFList.remove(j);
-            }
-        }
-    }
-
-    private Observable<myFileInfo> getPostsObservable(){
-        return RetrofitInstance.getService()
-                .getResults()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(new Function<List<myFileInfo>, ObservableSource<myFileInfo>>() {
-                    @Override
-                    public ObservableSource<myFileInfo> apply(final List<myFileInfo> flist) throws Exception {
-                        remoteFileInfo = (ArrayList<myFileInfo>) flist;
-                        return Observable.fromIterable(flist)
-                                .subscribeOn(Schedulers.io());
+                            binding.tvDesc.setText(feature.getProperty("description"));
                     }
                 });
+                    found = true;
+                    break;
     }
-
-    private Observable<myFileInfo> getCommentsObservable(final myFileInfo post){
-        return RetrofitInstance.getService()
-                .downloadFile(post.getFn())
-                .map(new Function<ResponseBody, myFileInfo>() {
-                    @Override
-                    public myFileInfo apply(ResponseBody body) throws Exception {
-                        Log.d(TAG, "downloaded. saving...");
-                        String tmp = post.getFn();
-                        String extension = tmp.substring(tmp.lastIndexOf("."));
-                        if(extension.equalsIgnoreCase(".kmz")) {
-                            post.error = processKmzResponse(body, post.getFn()) ? 0 : -1;
-                        } else if (extension.equalsIgnoreCase(".geojson")) {
-                            post.error = processGeojsonResponse(body, post.getFn()) ? 0 : -1;
-                        }
-                        //post.setComments(comments);
-                        return post;
+                zis.closeEntry();
                     }
-                })
-                .subscribeOn(Schedulers.io());
-
-    }
-
-    int findFileInfo(myFileInfo fileInfo) {
-        for(int i=0; i<localFList.size(); i++) {
-            myFileInfo f = localFList.get(i);
-            if(f.getFn()==fileInfo.getFn() && f.getDt()==fileInfo.getDt()) {
-                //already exist
-                return i;
+            if (!found) {
+                Toast.makeText(this, "No .kml found inside the .kmz file", Toast.LENGTH_SHORT).show();
             }
+        } catch (IOException | XmlPullParserException e) {
+            Log.e(TAG, "Failed to load KMZ", e);
+            Toast.makeText(this, "Failed to load KMZ file", Toast.LENGTH_SHORT).show();
         }
-        return -1;
     }
-    JSONObject getJsonFromFile (String fname) {
-        try {
 
-            BufferedReader input = null;
-            FileInputStream contentfile = null;
+    private void loadGeoJson(InputStream is) {
             try {
-                contentfile = new FileInputStream("/storage/emulated/0/Download/" + fname);
-                input = new BufferedReader(new InputStreamReader(contentfile));
-                String line;
-                StringBuffer content = new StringBuffer();
-                char[] buffer = new char[1024];
-                int num;
-                while ((num = input.read(buffer)) > 0) {
-                    content.append(buffer, 0, num);
-                }
-                JSONObject jsonObject = new JSONObject(content.toString());
-                return jsonObject;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return null;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return null;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            } finally {
-                if (contentfile != null) {
-                    contentfile.close();
-                }
-                if (input != null) {
-                    input.close();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    void updateData() {
-        getPostsObservable()
-                .subscribeOn(Schedulers.io())
-                .flatMap(new Function<myFileInfo, ObservableSource<myFileInfo>>() {
-                    @Override
-                    public ObservableSource<myFileInfo> apply(myFileInfo post) throws Exception {
-
-                        return getCommentsObservable(post);
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<myFileInfo>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        disposables.add(d);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int n;
+            while ((n = is.read(buffer)) > 0) {
+                baos.write(buffer, 0, n);
                     }
 
-                    @Override
-                    public void onNext(myFileInfo fileInfo) {
-                        Log.d(TAG, "onNext: "+fileInfo);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "onError: ", e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        syncFlist();
-                        Prefs.saveFList(MapsActivity.this,localFList);
-                        ArrayList<String> tmp = new ArrayList<>();
-                        for(int i=0; i<localFList.size(); i++) {
-                            String fname = localFList.get(i).getFn();
-                            int ext = fname.lastIndexOf(".");
-                            tmp.add(fname.substring(0,ext));
-                        }
-                        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, android.R.layout.simple_spinner_item, tmp);
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MapsActivity.this, R.layout.item, R.id.tvItem, tmp);
-                        binding.spinner.setAdapter(arrayAdapter);
-
-                        Log.e(TAG, "onComplete");
-                    }
-                });
-    }
-
-    public void onBtnClicked(View v) {
-        updateData();
-        //getFileList();
-        //new Decompress2("/storage/emulated/0/Download/to am.kmz", "/storage/emulated/0/Download/", this).execute();
-
-    }
-
-    private void loadLayer(String fname, String extension) {
-        FileInputStream is = null;
-        BufferedInputStream bis = null;
-        try {
-            if(extension.equalsIgnoreCase(".kmz"))
-                fname += ".kml";
-            else if(extension.equalsIgnoreCase(".geojson"))
-                fname += ".geojson";
-
-            is = new FileInputStream("/storage/emulated/0/Download/"+fname);
-            bis = new BufferedInputStream(is);
-            if(extension.equalsIgnoreCase(".kmz")) {
-                KmlLayer kmlLayer = null;
-                kmlLayer = new KmlLayer(mMap, bis, MapsActivity.this);
-                kmlLayer.addLayerToMap();
-                kmlLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
+            JSONObject json = new JSONObject(baos.toString("UTF-8"));
+            GeoJsonLayer layer = new GeoJsonLayer(mMap, json);
+            layer.addLayerToMap();
+            layer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                     @Override
                     public void onFeatureClick(Feature feature) {
                         if (feature == null) {
                             Log.d(TAG, "feature is null");
                             return;
                         }
-                        String ss = feature.getProperty("description");//getId();
-                        binding.tvDesc.setText(ss);
-                        /*Toast.makeText(MapsActivity.this,
-                                "Coming soon",
-                                Toast.LENGTH_SHORT).show();*/
+                    Toast.makeText(MapsActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
                     }
                 });
-            } else if(extension.equalsIgnoreCase(".geojson")) {
-                GeoJsonLayer theLayer = null;
-                theLayer = new GeoJsonLayer(mMap, getJsonFromFile(fname));
-                theLayer.addLayerToMap();
-                //layers.add(kmlLayer);
-                theLayer.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
-                    @Override
-                    public void onFeatureClick(Feature feature) {
-                        if (feature == null) {
-                            Log.d(TAG, "feature is null");
-                            return;
+        } catch (IOException | JSONException e) {
+            Log.e(TAG, "Failed to load GeoJSON", e);
+            Toast.makeText(this, "Failed to load GeoJSON file", Toast.LENGTH_SHORT).show();
                         }
-                        String ss = feature.getProperty("description");//getId();
-                        Toast.makeText(MapsActivity.this,
-                                "Coming soon",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bis != null) {
-                    bis.close();
-                }
-                if (is != null)
-                    is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        //updatePost(post);
-    }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-        String item = adapterView.getItemAtPosition(position).toString();
-        Log.d(TAG,"Selected: "+item);
+        if (position < 0 || position >= mapFiles.size()) return;
+        Log.d(TAG, "Selected: " + adapterView.getItemAtPosition(position));
         mMap.clear();
-        loadLayer(item, ".kmz");
+        loadLayer(mapFiles.get(position));
     }
 
     @Override
@@ -584,9 +297,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
         int itemId = item.getItemId();
-        if (itemId == R.id.action_settings) {
+        if (itemId == R.id.action_choose_folder) {
+            pickFolder();
+            return true;
+        } else if (itemId == R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);

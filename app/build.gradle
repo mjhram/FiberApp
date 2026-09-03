@@ -29,11 +29,6 @@ android {
 }
 
 dependencies {
-    def retrofitVersion = "2.7.0"
-    def rxjava_version = '2.2.16'
-    def rxandroid_version = '2.1.1'
-    def recyclerview_version = "1.0.0"
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.gms:play-services-maps:19.0.0'
@@ -42,17 +37,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     implementation 'com.google.maps.android:android-maps-utils:3.8.2'
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
 
-    // RxJava
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
-    // RxJava Call Adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    // RxAndroid
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-    implementation("com.squareup.okio:okio:3.9.0")
+    // Used to browse a user-picked folder (Storage Access Framework) for local .kmz/.geojson files
+    implementation 'androidx.documentfile:documentfile:1.0.1'
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.karumi:dexter:6.2.3'
