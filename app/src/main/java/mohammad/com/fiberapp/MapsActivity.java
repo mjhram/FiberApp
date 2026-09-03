@@ -14,15 +14,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.OnMapsSdkInitializedCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.data.Feature;
@@ -44,10 +49,7 @@ import java.util.zip.ZipInputStream;
 
 import mohammad.com.fiberapp.databinding.ActivityMapsBinding;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener, OnMapsSdkInitializedCallback {
 
     private static final int RC_PICK_FOLDER = 200;
     private static final String PREF_FOLDER_URI = "map_folder_uri";
@@ -68,22 +70,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (!checkPermission()) {
-            startActivity(MainActivity.createIntent(this));
-            finish();
-            return;
-        }
+        // Android 15+ (targetSdk 35+) draws edge-to-edge by default; request it explicitly
+        // for consistent behavior on older versions too, and handle insets ourselves below.
+        EdgeToEdge.enable(this);
+
+        // Request the modern Maps renderer explicitly; the legacy renderer is deprecated.
+        MapsInitializer.initialize(getApplicationContext(), MapsInitializer.Renderer.LATEST, this);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         binding.spinner.setOnItemSelectedListener(this);
 
+        // Keep the toolbar below the status bar and the description panel above the
+        // navigation bar / gesture area, now that the app draws behind the system bars.
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            binding.toolbar.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
+            binding.llDesc.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
+
+    @Override
+    public void onMapsSdkInitialized(@NonNull MapsInitializer.Renderer renderer) {
+        Log.d(TAG, "Maps renderer initialized: " + renderer);
+    }
 
     /**
      * Manipulates the map once available.
@@ -102,11 +119,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(bgd, 10));
 
         loadSavedFolderOrPrompt();
-    }
-
-    private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION);
-        return result == PERMISSION_GRANTED;
     }
 
     /**
@@ -295,13 +307,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    private static final String PRIVACY_POLICY_URL = "https://sites.google.com/view/fiberapp/home";
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.action_choose_folder) {
             pickFolder();
             return true;
-        } else if (itemId == R.id.action_settings) {
+        } else if (itemId == R.id.action_privacy_policy) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PRIVACY_POLICY_URL)));
             return true;
         }
         return super.onOptionsItemSelected(item);

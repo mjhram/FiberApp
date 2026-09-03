@@ -1,27 +1,40 @@
 apply plugin: 'com.android.application'
 
+// Load the Maps API key from secrets.properties (kept out of version control),
+// falling back to local.defaults.properties so the project still builds without it.
+def secretsProperties = new Properties()
+def secretsFile = rootProject.file("secrets.properties")
+def secretsDefaultsFile = rootProject.file("local.defaults.properties")
+if (secretsFile.exists()) {
+    secretsFile.withInputStream { secretsProperties.load(it) }
+} else if (secretsDefaultsFile.exists()) {
+    secretsDefaultsFile.withInputStream { secretsProperties.load(it) }
+}
+
 android {
     namespace 'mohammad.com.fiberapp'
-    compileSdkVersion 34
+    compileSdkVersion 36
     defaultConfig {
         applicationId "mohammad.com.fiberapp"
         minSdkVersion 23
-        targetSdkVersion 34
-        versionCode 11
-        versionName "1.1"
+        targetSdkVersion 36
+        versionCode 15
+        versionName "1.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        manifestPlaceholders["MAPS_API_KEY"] = secretsProperties.getProperty("MAPS_API_KEY", "")
 
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding true
@@ -31,6 +44,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.activity:activity:1.9.3'
     implementation 'com.google.android.gms:play-services-maps:19.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
@@ -42,9 +56,7 @@ dependencies {
     implementation 'androidx.documentfile:documentfile:1.0.1'
 
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.karumi:dexter:6.2.3'
-    implementation 'com.nabinbhandari.android:permissions:4.0.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.android.material:material:1.14.0'
     implementation 'com.github.Kaufland:andswipeframework:0.8.4'
 
 

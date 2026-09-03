@@ -19,3 +19,18 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# --- R8 keep rules for third-party libraries used by FiberApp ---
+# Play Services Maps ships its own consumer rules, but keep this as a defensive
+# backstop since some internal bridging classes are accessed reflectively.
+-keep class com.google.android.gms.maps.** { *; }
+-keep interface com.google.android.gms.maps.** { *; }
+
+# KML / GeoJSON parsing (android-maps-utils) - keep data model classes intact.
+-keep class com.google.maps.android.data.** { *; }
+-keep class com.google.maps.android.data.kml.** { *; }
+-keep class com.google.maps.android.data.geojson.** { *; }
+
+# Third-party swipe UI library (unmaintained, no published consumer rules).
+-keep class kaufland.com.swipelibrary.** { *; }
+

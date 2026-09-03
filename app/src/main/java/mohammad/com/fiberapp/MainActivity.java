@@ -1,28 +1,18 @@
 package mohammad.com.fiberapp;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.nabinbhandari.android.permissions.PermissionHandler;
-import com.nabinbhandari.android.permissions.Permissions;
-
-import mohammad.com.fiberapp.databinding.ActivityMainBinding;
-
+/**
+ * Entry point. The app currently requires no dangerous runtime permissions
+ * (Storage Access Framework is used for file selection and doesn't need any),
+ * so this simply forwards to the map screen.
+ */
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
-    private View contentView;
-    private MultiplePermissionsListener allPermissionsListener;
-    private PermissionRequestErrorListener errorListener;
 
     @NonNull
     public static Intent createIntent(@NonNull Context context) {
@@ -32,24 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        contentView = findViewById(android.R.id.content);
-        binding.btnRequestAll.setOnClickListener(v -> requestAllPermissions());
-            requestAllPermissions();
-    }
-
-    private final String TAG = "FiberApp";
-
-    public void requestAllPermissions() {
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
-        Permissions.check(this, permissions, null, null, new PermissionHandler() {
-            @Override
-            public void onGranted() {
-                startActivity(MapsActivity.createIntent(MainActivity.this));
+        startActivity(MapsActivity.createIntent(this));
                 finish();
-                Toast.makeText(MainActivity.this, "granted....", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }
