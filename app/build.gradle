@@ -18,8 +18,8 @@ android {
         applicationId "mohammad.com.fiberapp"
         minSdkVersion 23
         targetSdkVersion 36
-        versionCode 15
-        versionName "1.5"
+        versionCode 16
+        versionName "1.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders["MAPS_API_KEY"] = secretsProperties.getProperty("MAPS_API_KEY", "")

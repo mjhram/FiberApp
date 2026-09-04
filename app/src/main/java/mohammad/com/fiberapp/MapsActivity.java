@@ -53,13 +53,55 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private static final int RC_PICK_FOLDER = 200;
     private static final String PREF_FOLDER_URI = "map_folder_uri";
+    // Bundled with the app so there's always something to show, even before any
+    // folder is picked. Lives at app/src/main/assets/to_am.kmz.
+    private static final String DEFAULT_ASSET_NAME = "to_am.kmz";
     final String TAG = "FiberApp";
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private int currentPosition = -1;
 
-    // Files found in the chosen folder that match .kmz / .geojson, in the order shown in the spinner.
-    private final ArrayList<DocumentFile> mapFiles = new ArrayList<>();
+    // Everything available to show in the spinner: the bundled default first,
+    // then any .kmz/.geojson files found in a user-picked folder.
+    private final ArrayList<LayerSource> mapFiles = new ArrayList<>();
+
+    /**
+     * A single map layer FiberApp can load: either bundled inside the app (an asset)
+     * or picked by the user from a device folder (a DocumentFile via the Storage
+     * Access Framework). Either way, nothing is ever uploaded anywhere.
+     */
+    private static class LayerSource {
+        final String displayName;
+        final boolean isAsset;
+        final String assetPath;
+        final DocumentFile documentFile;
+        final String lowerName;
+
+        private LayerSource(String displayName, boolean isAsset, String assetPath,
+                             DocumentFile documentFile, String lowerName) {
+            this.displayName = displayName;
+            this.isAsset = isAsset;
+            this.assetPath = assetPath;
+            this.documentFile = documentFile;
+            this.lowerName = lowerName;
+        }
+
+        static LayerSource fromAsset(String assetFileName) {
+            return new LayerSource(stripExtension(assetFileName), true, assetFileName, null,
+                    assetFileName.toLowerCase());
+        }
+
+        static LayerSource fromDocument(DocumentFile file) {
+            String name = file.getName();
+            return new LayerSource(stripExtension(name), false, null, file, name.toLowerCase());
+        }
+
+        private static String stripExtension(String name) {
+            int dot = name.lastIndexOf('.');
+            return dot != -1 ? name.substring(0, dot) : name;
+        }
+    }
 
     @NonNull
     public static Intent createIntent(@NonNull Context context) {
@@ -122,19 +164,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     /**
-     * Tries to reuse a previously picked folder. Falls back to asking the user to pick one.
+     * Tries to reuse a previously picked folder in addition to the bundled default.
+     * Unlike before, there's no forced folder-pick prompt  the bundled map already
+     * gives the app something to show right after install.
      */
     private void loadSavedFolderOrPrompt() {
         String saved = Prefs.getPrefs(PREF_FOLDER_URI, this);
+        Uri treeUri = null;
         if (saved != null && !saved.isEmpty()) {
-            Uri treeUri = Uri.parse(saved);
-            DocumentFile dir = DocumentFile.fromTreeUri(this, treeUri);
+            Uri candidate = Uri.parse(saved);
+            DocumentFile dir = DocumentFile.fromTreeUri(this, candidate);
             if (dir != null && dir.canRead()) {
-                scanFolder(treeUri);
-                return;
+                treeUri = candidate;
                                                 }
                                             }
-        pickFolder();
+        scanFolder(treeUri);
                         }
 
     /**
@@ -162,12 +206,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
     /**
-     * Scans the chosen folder for .kmz / .geojson files and populates the spinner with them.
+     * Builds the spinner's list of layers: the bundled default first, then any
+     * .kmz/.geojson files found in the given folder (if one has been picked).
      * No network call is made - everything is read directly off the device.
      */
-    private void scanFolder(Uri treeUri) {
+    private void scanFolder(@Nullable Uri treeUri) {
         mapFiles.clear();
+        mapFiles.add(LayerSource.fromAsset(DEFAULT_ASSET_NAME));
 
+        if (treeUri != null) {
         DocumentFile dir = DocumentFile.fromTreeUri(this, treeUri);
         if (dir != null && dir.isDirectory()) {
             for (DocumentFile f : dir.listFiles()) {
@@ -176,47 +223,50 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (name == null) continue;
                 String lower = name.toLowerCase();
                 if (lower.endsWith(".kmz") || lower.endsWith(".geojson")) {
-                    mapFiles.add(f);
+                        mapFiles.add(LayerSource.fromDocument(f));
+                    }
                 }
+            }
+            if (mapFiles.size() == 1) {
+                Toast.makeText(this, "No .kmz or .geojson files found in the selected folder", Toast.LENGTH_LONG).show();
             }
     }
 
         ArrayList<String> displayNames = new ArrayList<>();
-        for (DocumentFile f : mapFiles) {
-            String name = f.getName();
-            int dot = name.lastIndexOf('.');
-            displayNames.add(dot != -1 ? name.substring(0, dot) : name);
+        for (LayerSource s : mapFiles) {
+            displayNames.add(s.displayName);
     }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.tvItem, displayNames);
         binding.spinner.setAdapter(arrayAdapter);
 
-        if (mapFiles.isEmpty()) {
-            Toast.makeText(this, "No .kmz or .geojson files found in the selected folder", Toast.LENGTH_LONG).show();
-                    }
+        // Show the first layer right away rather than waiting for the spinner's
+        // selection callback to fire.
+        binding.spinner.setSelection(0);
+        currentPosition = 0;
+        mMap.clear();
+        loadLayer(mapFiles.get(0));
                 }
 
     /**
-     * Reads the given file directly from the device (via the Storage Access Framework) and
-     * renders it on the map. .kmz files are unzipped in-memory to find the embedded .kml;
-     * .geojson files are parsed directly. Nothing is downloaded or written elsewhere.
+     * Reads the given layer - whether bundled in the app or picked from a device folder -
+     * and renders it on the map. .kmz files are unzipped in-memory to find the embedded
+     * .kml; .geojson files are parsed directly. Nothing is downloaded or uploaded anywhere.
      */
-    private void loadLayer(DocumentFile file) {
-        String name = file.getName();
-        if (name == null) return;
-        String lower = name.toLowerCase();
-
-        try (InputStream is = getContentResolver().openInputStream(file.getUri())) {
+    private void loadLayer(LayerSource source) {
+        try (InputStream is = source.isAsset
+                ? getAssets().open(source.assetPath)
+                : getContentResolver().openInputStream(source.documentFile.getUri())) {
             if (is == null) return;
 
-            if (lower.endsWith(".kmz")) {
+            if (source.lowerName.endsWith(".kmz")) {
                 loadKmz(is);
-            } else if (lower.endsWith(".geojson")) {
+            } else if (source.lowerName.endsWith(".geojson")) {
                 loadGeoJson(is);
             }
         } catch (IOException e) {
-            Log.e(TAG, "Failed to open file: " + name, e);
-            Toast.makeText(this, "Could not open " + name, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Failed to open file: " + source.displayName, e);
+            Toast.makeText(this, "Could not open " + source.displayName, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -290,6 +340,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
         if (position < 0 || position >= mapFiles.size()) return;
+        if (position == currentPosition) return; // already showing this one (e.g. initial auto-selection)
+        currentPosition = position;
         Log.d(TAG, "Selected: " + adapterView.getItemAtPosition(position));
         mMap.clear();
         loadLayer(mapFiles.get(position));
